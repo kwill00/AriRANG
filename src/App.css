@@ -1,0 +1,167 @@
+
+:root {
+  font-family: Arial, sans-serif;
+  color: #35234d;
+  background: #f7f3fc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.app {
+  max-width: 700px;
+  margin: auto;
+  padding: 24px;
+}
+
+header {
+  text-align: center;
+  color: #7047a3;
+}
+
+.hero {
+  background: linear-gradient(135deg, #65409b, #aa80dc);
+  color: white;
+  padding: 35px;
+  border-radius: 20px;
+  margin: 25px 0;
+}
+
+.hero h1 {
+  font-size: 30px;
+}
+
+.calculator {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px #00000010;
+}
+
+label {
+  display: block;
+  margin: 18px 0 8px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d4c5e7;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.total {
+  margin-top: 25px;
+  padding: 20px;
+  background: #eee5fa;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.total h2 {
+  font-size: 32px;
+  color: #68409d;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 0;
+  color: #887a99;
+}
+
+
+.travel-form {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 20px #00000010;
+}
+
+.travel-form h2 {
+  color: #68409d;
+  margin-top: 0;
+}
+
+.trip-summary {
+  background: #eee5fa;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 25px;
+}
+
+.trip-summary h3 {
+  color: #68409d;
+}
+
+.trip-summary p {
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.date-error {
+  color: #a32646;
+  font-weight: bold;
+}
+
+.savings {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  margin-top: 20px;
+  box-shadow: 0 5px 20px #00000010;
+}
+
+.savings h2 {
+  color: #68409d;
+}
+
+.savings-summary {
+  background: #eee5fa;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.progress-bar {
+  height: 14px;
+  background: #d5c3e9;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.progress-bar div {
+  height: 100%;
+  background: #8051b5;
+  transition: width 0.3s;
+}
+
+.savings-summary h3 {
+  color: #68409d;
+}
+.save-button {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  background: #7045a3;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background: #58318b;
+}
