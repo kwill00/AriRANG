@@ -165,3 +165,86 @@ footer {
 .save-button:hover {
   background: #58318b;
 }
+
+.trips-list {
+  margin-top: 30px;
+}
+
+.trips-list h2 {
+  color: #68409d;
+}
+
+.trip-cards {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, 260px), 1fr)
+  );
+  gap: 16px;
+}
+
+.trip-card {
+  background: white;
+  padding: 22px;
+  border-radius: 18px;
+  box-shadow: 0 5px 20px #00000010;
+}
+
+.trip-card h3 {
+  color: #68409d;
+  margin-top: 0;
+}
+
+.trip-card p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.main-actions,
+.trip-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.main-actions button {
+  flex: 1;
+  min-width: 180px;
+}
+
+.trip-actions {
+  margin-top: 18px;
+}
+
+.trip-actions button,
+.new-button {
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.edit-button {
+  background: #e9ddfa;
+  color: #633b98;
+}
+
+.delete-button {
+  background: #ffe4e8;
+  color: #b42342;
+}
+
+.new-button {
+  background: #e9ddfa;
+  color: #633b98;
+}
+
+.trip-actions button:hover,
+.new-button:hover {
+  filter: brightness(0.95);
+}
+
+.main-actions .save-button {
+  margin-top: 0;
+}

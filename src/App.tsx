@@ -2,6 +2,21 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
+
+type Viaje = {
+  id: string
+  origen: string
+  destino: string
+  fechaSalida: string
+  fechaConcierto: string
+  fechaRegreso: string
+  entrada: number
+  transporte: number
+  hotel: number
+  ahorrado: number
+}
+
+
 function App() {
   const [entrada, setEntrada] = useState(250)
   const [transporte, setTransporte] = useState(350)
@@ -16,6 +31,11 @@ const [fechaRegreso, setFechaRegreso] = useState('')
 
   const total = entrada + transporte + hotel
   const [ahorrado, setAhorrado] = useState(0)
+
+  const [viajes, setViajes] = useState<Viaje[]>([])
+
+  const [viajeEditandoId, setViajeEditandoId] =
+  useState<string | null>(null)
 
 
 useEffect(() => {
@@ -43,6 +63,42 @@ useEffect(() => {
 }, [])
 
 
+useEffect(() => {
+  try {
+    const datos = localStorage.getItem('armyTravelViajes')
+
+    if (datos) {
+      const lista = JSON.parse(datos)
+
+      if (Array.isArray(lista)) {
+        setViajes(lista)
+      }
+    } else {
+      const anterior = localStorage.getItem('armyTravelViaje')
+
+      if (anterior) {
+        const viajeAnterior = JSON.parse(anterior)
+
+        const primerViaje: Viaje = {
+          ...viajeAnterior,
+          id: crypto.randomUUID()
+        }
+
+        setViajes([primerViaje])
+
+        localStorage.setItem(
+          'armyTravelViajes',
+          JSON.stringify([primerViaje])
+        )
+      }
+    }
+  } catch (error) {
+    console.error('Error recuperando viajes:', error)
+  }
+}, [])
+
+
+
   const pendiente = Math.max(0, total - ahorrado)
 
 const hoy = new Date()
@@ -67,8 +123,11 @@ const progreso = total > 0
   : 100
 
 
+
+
 const guardarViaje = () => {
-  const viaje = {
+  const viaje: Viaje = {
+    id: viajeEditandoId ?? crypto.randomUUID(),
     origen,
     destino,
     fechaSalida,
@@ -80,12 +139,78 @@ const guardarViaje = () => {
     ahorrado
   }
 
+  const listaActualizada = viajeEditandoId
+    ? viajes.map((v) =>
+        v.id === viajeEditandoId ? viaje : v
+      )
+    : [...viajes, viaje]
+
+  setViajes(listaActualizada)
+
   localStorage.setItem(
-    'armyTravelViaje',
-    JSON.stringify(viaje)
+    'armyTravelViajes',
+    JSON.stringify(listaActualizada)
   )
 
-  alert('💜 ¡Tu viaje se guardó correctamente!')
+  setViajeEditandoId(null)
+
+  alert('💜 ¡Viaje guardado correctamente!')
+}
+
+
+const editarViaje = (viaje: Viaje) => {
+  setViajeEditandoId(viaje.id)
+
+  setOrigen(viaje.origen)
+  setDestino(viaje.destino)
+  setFechaSalida(viaje.fechaSalida)
+  setFechaConcierto(viaje.fechaConcierto)
+  setFechaRegreso(viaje.fechaRegreso)
+
+  setEntrada(viaje.entrada)
+  setTransporte(viaje.transporte)
+  setHotel(viaje.hotel)
+  setAhorrado(viaje.ahorrado)
+
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+const eliminarViaje = (id: string) => {
+  const confirmar = window.confirm(
+    '¿Seguro que querés eliminar este viaje?'
+  )
+
+  if (!confirmar) return
+
+  const listaActualizada = viajes.filter(
+    (viaje) => viaje.id !== id
+  )
+
+  setViajes(listaActualizada)
+
+  localStorage.setItem(
+    'armyTravelViajes',
+    JSON.stringify(listaActualizada)
+  )
+
+  if (viajeEditandoId === id) {
+    setViajeEditandoId(null)
+  }
+}
+
+const nuevoViaje = () => {
+  setViajeEditandoId(null)
+  setOrigen('')
+  setDestino('')
+  setFechaSalida('')
+  setFechaConcierto('')
+  setFechaRegreso('')
+  setEntrada(0)
+  setTransporte(0)
+  setHotel(0)
+  setAhorrado(0)
+
+  window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
 
@@ -233,6 +358,9 @@ const guardarViaje = () => {
     </div>
 
     <p>{progreso.toFixed(0)}% ahorrado</p>
+
+    
+  
     <p>Te faltan: US$ {pendiente.toFixed(2)}</p>
 
     {fechaObjetivo && diasRestantes > 0 ? (
@@ -255,9 +383,92 @@ const guardarViaje = () => {
 
   
 </section>
-<button className="save-button" onClick={guardarViaje}>
-  💾 Guardar mi viaje
-</button>
+
+<div className="main-actions">
+  <button
+    type="button"
+    className="save-button"
+    onClick={guardarViaje}
+  >
+    {viajeEditandoId
+      ? '💾 Guardar cambios'
+      : '💾 Guardar nuevo viaje'}
+  </button>
+
+  <button
+    type="button"
+    className="new-button"
+    onClick={nuevoViaje}
+  >
+    ➕ Nuevo viaje
+  </button>
+</div>
+
+
+
+<section className="trips-list">
+  <h2>💜 Mis viajes guardados</h2>
+
+  {viajes.length === 0 ? (
+    <p>Todavía no guardaste ningún viaje.</p>
+  ) : (
+    <div className="trip-cards">
+      {viajes.map((viaje) => {
+        const presupuesto =
+          viaje.entrada + viaje.transporte + viaje.hotel
+
+        const progreso = presupuesto > 0
+          ? Math.min(100, (viaje.ahorrado / presupuesto) * 100)
+          : 100
+
+        return (
+          <article className="trip-card" key={viaje.id}>
+            <h3>✈️ {viaje.destino}</h3>
+
+            <p>
+              <strong>Origen:</strong> {viaje.origen}
+            </p>
+
+            <p>
+              <strong>Concierto:</strong>{' '}
+              {viaje.fechaConcierto || 'Sin definir'}
+            </p>
+
+            <p>
+              <strong>Presupuesto:</strong> US${' '}
+              {presupuesto.toLocaleString()}
+            </p>
+
+            <div className="progress-bar">
+              <div style={{ width: `${progreso}%` }} />
+            </div>
+
+            <p>{progreso.toFixed(0)}% ahorrado</p>
+<div className="trip-actions">
+  <button
+    type="button"
+    className="edit-button"
+    onClick={() => editarViaje(viaje)}
+  >
+    ✏️ Editar
+  </button>
+
+  <button
+    type="button"
+    className="delete-button"
+    onClick={() => eliminarViaje(viaje.id)}
+  >
+    🗑️ Eliminar
+  </button>
+</div>
+
+          </article>
+        )
+      })}
+    </div>
+  )}
+</section>
+
 
       <footer>
         ARMY Travel · Made for fans 💜
