@@ -1,0 +1,42 @@
+.privacy-toolbar, .privacy-links, .privacy-banner, .privacy-account, .access-gate { color: #291939; background: #fff; padding: 1rem; border: 1px solid #695675; border-radius: .7rem; margin: .75rem auto; max-width: 70rem; }
+.privacy-toolbar { display: flex; align-items: center; justify-content: flex-end; gap: .75rem; }
+.privacy-toolbar select { width: auto; }
+.privacy-actions, .privacy-links nav { display: flex; gap: .6rem; flex-wrap: wrap; }
+.privacy-actions { max-width: 70rem; margin: .75rem auto; }
+.privacy-banner { border-width: 2px; }
+.privacy-banner label, .policy-choices label { display: flex; gap: .75rem; align-items: flex-start; margin: .8rem 0; }
+.privacy-banner input[type=checkbox], .policy-choices input[type=checkbox] { width: 1.3rem; height: 1.3rem; flex: 0 0 1.3rem; }
+.privacy-banner button, .privacy-links button, .privacy-account button, .access-gate button { background: #5b287e; color: white; border: 2px solid #5b287e; padding: .7rem; min-height: 44px; }
+.privacy-banner button:disabled, .privacy-account button:disabled, .access-gate button:disabled { background: #eee; color: #4b4053; border-color: #695675; opacity: 1; }
+.policy-dialog { color: #291939; background: white; max-width: 50rem; width: calc(100% - 2rem); max-height: 85dvh; border: 2px solid #5b287e; border-radius: 1rem; padding: 1.5rem; }
+.policy-dialog::backdrop { background: #171020b3; }
+.policy-dialog p { line-height: 1.65; }
+.privacy-error { color: #8b1528; background: white; padding: 1rem; }
+.skip-link { position: absolute; left: 1rem; top: -8rem; background: white; color: #291939; z-index: 1000; padding: 1rem; }
+.skip-link:focus { top: 1rem; }
+:root { color-scheme: light; }
+body :is(button, a, input, select, textarea, summary, [tabindex]):focus-visible { outline: 3px solid #162c7d !important; outline-offset: 4px; }
+body input, body textarea, body select { color: #291939; background-color: #fff; }
+body input::placeholder, body textarea::placeholder { color: #655b6c; opacity: 1; }
+body button { min-height: 44px; }
+body .app .community-eyebrow { color: #64417e; }
+body .app .app-nav button:not(.active) { color: #554060; }
+body .app .proyecto-datos { color: #594263; }
+body .app .comunidad > button { min-height: 44px; }
+body button:disabled { cursor: default; }
+.sharing-notice { padding: .8rem; border-left: 4px solid #5b287e; color: #291939; background: #f7f0ff; }
+.guest-planner { max-width: 48rem; margin: 1rem auto; padding: clamp(1rem, 4vw, 2rem); background: white; color: #291939; border: 1px solid #695675; border-radius: 1rem; }
+.guest-planner label { display: block; margin: 1rem 0 .35rem; }
+.guest-planner input { width: 100%; box-sizing: border-box; }
+.guest-planner button { margin: .5rem .5rem .5rem 0; background: #5b287e; color: white; padding: .75rem; }
+.guest-result { padding: 1rem 0; }
+.conduct-guide, .safe-community { max-width: 48rem; padding: 1rem; margin: 1rem auto; background: white; color: #291939; border: 1px solid #695675; border-radius: .75rem; }
+.conduct-guide summary { cursor: pointer; padding: .5rem; font-weight: 700; }
+.conduct-guide li { margin: .8rem 0; line-height: 1.6; }
+.safe-community label { display: block; margin: .7rem 0; }
+.safe-community input, .safe-community textarea { width: 100%; box-sizing: border-box; }
+.safe-community input[type=checkbox] { width: 1.3rem; }
+.safe-community article { border-top: 1px solid #695675; padding: 1rem 0; overflow-wrap: anywhere; }
+.safe-community button { color: white; background: #5b287e; padding: .7rem; margin: .4rem; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+@media (max-width: 480px) { .privacy-actions button, .privacy-links button { flex: 1 1 45%; } .policy-dialog { padding: 1rem; } }

@@ -1,0 +1,93 @@
+:root {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: #30233f;
+  background: #f6f4fa;
+  font-synthesis: none;
+  --purple: #7544b9;
+  --purple-dark: #4f267f;
+  --border: #e8e0f0;
+  --muted: #756b82;
+}
+body { background: radial-gradient(ellipse at 90% 0%, #e9ddfa 0, transparent 38%), #f6f4fa; }
+button, input, select, textarea { font-family: inherit; }
+.app { max-width: 960px; padding: 32px 28px; }
+.brand-header { display: flex; justify-content: space-between; align-items: center; text-align: left; gap: 18px; margin: 0 0 28px; }
+.brand-lockup { display: flex; align-items: center; gap: 12px; }
+.brand-symbol { display: grid; place-items: center; background: #7544b9; color: white; width: 46px; height: 46px; border-radius: 15px; font-size: 25px; box-shadow: 0 6px 18px #7544b927; }
+.brand-name { display: block; font-size: 21px; font-weight: 800; letter-spacing: -.8px; color: #30233f; }
+.brand-caption { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; }
+.brand-note { font-size: 12px; color: #6b5088; background: #eee6f8; padding: 9px 14px; border-radius: 30px; }
+.app .app-nav { gap: 5px; border: 1px solid var(--border); background: #ffffffd9; box-shadow: 0 3px 16px #39204e05; padding: 8px; }
+.app .app-nav button { font-size: 12px; font-weight: 600; color: #766384; flex-basis: 115px; border-radius: 10px; }
+.app .app-nav button.active { background: #7544b9; color: white; box-shadow: 0 4px 12px #7544b924; }
+.app h1, .app h2, .app h3 { letter-spacing: -.6px; }
+.app h2 { font-size: clamp(25px, 4vw, 34px); line-height: 1.18; }
+.app p { line-height: 1.65; }
+.app small { color: var(--muted); font-size: 11px; letter-spacing: .25px; }
+.app .avisos-sociales { margin: 12px 0 28px; }
+.app .avisos-sociales > button { border: 0; background: transparent; color: #624c70; font-size: 12px; padding: 4px 0; min-height: 44px; }
+.community-intro { padding: 8px 0 20px; }
+.community-eyebrow { color: #946ebd; font-size: 10px; font-weight: 750; letter-spacing: 2px; }
+.community-intro h2 { margin: 12px 0; }
+.community-intro p { color: var(--muted); max-width: 560px; font-size: 15px; margin-bottom: 4px; }
+.app .comunidad-tarjeta, .app .perfil-card, .app .trip-card, .app .next-trip, .app .calculator, .app .travel-form, .app .savings, .app .flight-search { border: 1px solid var(--border); background: #fff; border-radius: 20px; box-shadow: 0 5px 22px #39204e04; }
+.app article.comunidad-tarjeta { padding: 28px; margin-top: 20px; }
+.app article.comunidad-tarjeta h3 { font-size: 22px; color: #39234c; margin: 18px 0 10px; }
+.app .comunidad-texto { color: #675b73; font-size: 15px; }
+.app .proyecto-datos { border-radius: 12px; padding: 8px 14px; margin: 18px 0; background: #f8f5fc; color: #7d678f; font-size: 12px; display: flex; gap: 20px; flex-wrap: wrap; }
+.app .proyecto-datos p { margin: 4px 0; }
+.app .comunidad button { background: #faf7fe; border: 1px solid #e5d9f2; color: #70449c; border-radius: 12px; font-size: 13px; font-weight: 600; }
+.app .comunidad button:hover:not(:disabled) { background: #ede3f9; border-color: #d1b9e8; }
+.app .mobile-community-tools { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 4px 0 22px; }
+.app .mobile-community-tools button { padding: 15px 18px; font-size: 14px; }
+.app .mobile-community-tools button:first-child { color: white; border-color: #7544b9; background: #7544b9; box-shadow: 0 6px 14px #7544b91a; }
+.app .mobile-community-tools button:first-child:hover { background: #62359f; }
+.app .comunidad-compositor:not(.is-open), .app .proyecto-filtros:not(.is-open) { display: none; }
+.app .comunidad .autor-social-boton { border: none; background: transparent; color: #544160; padding: 4px 0; font-size: 13px; font-weight: 650; }
+.app .autor-social-avatar { width: 38px; height: 38px; background: linear-gradient(140deg, #e5d4f7, #f4eefa); color: #79539d; }
+.app .comunidad .finger-heart { color: #8b4ec0; background: #f4edfb; }
+.app .comunidad .finger-heart[aria-pressed="true"] { background: #e5d3f6; border-color: #b18bd2; }
+.app .comunidad-acciones { padding-top: 4px; }
+.app .comunidad-comentarios { border-color: #eee7f4; }
+.app .comunidad input:not([type="checkbox"]), .app .comunidad textarea, .app .comunidad select { background: #fcfaff; border-color: #e1d7eb; border-radius: 12px; color: #42334f; }
+.app label { font-size: 13px; color: #63516f; }
+.app .dashboard-hero { position: relative; isolation: isolate; overflow: hidden; background: linear-gradient(115deg, #4d287b 0%, #8052b5 70%, #a37bca); padding: 42px; border-radius: 24px; box-shadow: 0 12px 32px #6843951a; }
+.app .dashboard-hero::after { content: ''; position: absolute; z-index: -1; width: 320px; height: 320px; right: -140px; top: -100px; border: 45px solid #ffffff0c; border-radius: 50%; box-shadow: 0 0 0 45px #ffffff06; }
+.app .dashboard-hero h1 { max-width: 540px; font-weight: 750; font-size: clamp(27px, 4vw, 40px); letter-spacing: -1.3px; }
+.app .dashboard-hero p { max-width: 470px; opacity: .88; font-size: 15px; }
+.app .dashboard-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.app .dashboard-stat { border: 1px solid var(--border); padding: 20px; box-shadow: none; }
+.app .dashboard-stat strong { font-size: clamp(21px, 3vw, 28px); }
+.app .busqueda-activa { background: #f0e9f8; font-size: 13px; }
+.app footer { color: #96899f; font-size: 12px; border-top: 1px solid var(--border); margin-top: 36px; }
+@media (max-width: 640px) {
+  .app { padding: 14px; padding-bottom: max(22px, env(safe-area-inset-bottom)); }
+  .brand-header { display: none; }
+  .app-navigation { border-color: var(--border); background: #fffffff5; backdrop-filter: blur(12px); }
+  .mobile-nav-header span { font-size: 16px; letter-spacing: -.45px; }
+  .mobile-nav-header button { font-size: 12px; background: #f7f1fd; border-color: #e5d9f2; }
+  .app .app-nav button { font-size: 13px; }
+  .app .comunidad[aria-label="Avisos de cuentas seguidas"] { margin: 6px 0 16px; }
+  .app .comunidad[aria-label="Avisos de cuentas seguidas"] > button { min-height: 44px; font-size: 11px; }
+  .community-intro { padding: 6px 0 18px; }
+  .community-eyebrow { font-size: 9px; letter-spacing: 1.5px; }
+  .community-intro h2 { font-size: 29px; }
+  .community-intro p { font-size: 14px; }
+  .app .mobile-community-tools { gap: 8px; }
+  .app .mobile-community-tools button { font-size: 12px; padding: 13px 9px; }
+  .app article.comunidad-tarjeta { padding: 20px; border-radius: 18px; }
+  .app article.comunidad-tarjeta h3 { font-size: 21px; }
+  .app .comunidad-texto { font-size: 14px; }
+  .app .proyecto-datos { gap: 8px 16px; font-size: 12px; margin: 16px 0; }
+  .app .comunidad button { min-height: 44px; }
+  .app .dashboard-hero { padding: 26px; }
+  .app .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .app .dashboard-stat { padding: 16px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .app button { transition: background-color .15s, border-color .15s; }
+}
+
+.instalar-app { max-width:1000px; margin:12px auto; padding:0 16px; color:#513969; }
+.instalar-app button { background:#f0e6ff; color:#623490; border:1px solid #d9c4ed; border-radius:14px; padding:12px 18px; min-height:44px; font:inherit; cursor:pointer; }
+.instalar-app p { line-height:1.5; }

@@ -208,7 +208,7 @@ footer {
 }
 
 .main-actions button {
-  flex: 1;
+  flex: 1 1 100px;
   min-width: 180px;
 }
 
@@ -248,3 +248,595 @@ footer {
 .main-actions .save-button {
   margin-top: 0;
 }
+
+/* DASHBOARD ARMY TRAVEL */
+
+.dashboard {
+  margin-bottom: 30px;
+}
+
+.dashboard-hero {
+  background: linear-gradient(135deg, #59348f, #a47bd4);
+  color: white;
+  border-radius: 22px;
+  padding: 30px;
+  margin-bottom: 18px;
+}
+
+.dashboard-hero span {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  opacity: 0.85;
+}
+
+.dashboard-hero h1 {
+  color: white;
+  font-size: clamp(23px, 4vw, 32px);
+  line-height: 1.25;
+}
+
+.dashboard-hero p {
+  color: white;
+  line-height: 1.6;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.dashboard-stat {
+  background: white;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 5px 20px #0000000d;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dashboard-stat span {
+  color: #80659d;
+  font-size: 13px;
+}
+
+.dashboard-stat strong {
+  color: #59348f;
+  font-size: clamp(20px, 3vw, 28px);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 480px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-hero {
+    padding: 22px;
+  }
+
+  .dashboard-stat {
+    padding: 18px;
+  }
+}
+
+.app-nav {
+  flex-wrap: wrap;
+  display: flex;
+  gap: 10px;
+  background: white;
+  padding: 10px;
+  border-radius: 16px;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 20px #0000000d;
+}
+
+.app-nav button {
+  flex: 1 1 100px;
+  border: none;
+  background: transparent;
+  color: #7045a3;
+  padding: 13px 8px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.app-nav button.active {
+  background: #7045a3;
+  color: white;
+}
+
+.app-nav button:hover:not(.active) {
+  background: #eee5fa;
+}
+
+@media (max-width: 480px) {
+  .app-nav {
+  flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .app-nav button {
+    font-size: 12px;
+    padding: 12px 4px;
+  }
+}
+
+/* PROXIMO VIAJE */
+
+.next-trip {
+  background: white;
+  border-radius: 20px;
+  padding: 28px;
+  margin: 20px 0;
+  box-shadow: 0 5px 20px #0000000d;
+}
+
+.next-trip-label {
+  color: #8051b5;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.next-trip h2 {
+  color: #59348f;
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+.next-trip p {
+  color: #6f5985;
+  line-height: 1.6;
+}
+
+.next-trip-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.next-trip-details > div {
+  background: #f3eafb;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.next-trip-details span {
+  color: #7957a2;
+  font-size: 12px;
+}
+
+.next-trip-details strong {
+  color: #59348f;
+  font-size: 19px;
+}
+
+.next-trip-progress {
+  background: #e4d5f2;
+  height: 12px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.next-trip-progress div {
+  height: 100%;
+  background: #8051b5;
+  transition: width 0.3s ease;
+}
+
+@media (max-width: 480px) {
+  .next-trip {
+    padding: 20px;
+  }
+
+  .next-trip-details {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* BUSCADOR DE AEROPUERTOS */
+
+.airport-search {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.airport-search label {
+  display: block;
+  font-weight: bold;
+  color: #35204f;
+  margin-bottom: 8px;
+}
+
+.airport-search input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d7c2ef;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 15px;
+  background: white;
+}
+
+.airport-search input:focus {
+  outline: 2px solid #a47bd4;
+}
+
+.airport-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  background: white;
+  border: 1px solid #e1d3ef;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px #00000020;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.airport-option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-bottom: 1px solid #f0eafa;
+  background: white;
+  color: #35204f;
+  text-align: left;
+  cursor: pointer;
+}
+
+.airport-option:hover {
+  background: #f3eafb;
+}
+
+.airport-option span {
+  font-size: 12px;
+  color: #80659d;
+}
+
+.airport-empty {
+  padding: 14px;
+  color: #80659d;
+}
+
+/* BUSCADOR DE VUELOS */
+
+.flight-search {
+  background: white;
+  border-radius: 20px;
+  padding: 28px;
+  margin: 24px 0;
+  box-shadow: 0 5px 20px #0000000d;
+}
+
+.flight-search h2 {
+  color: #59348f;
+  margin-top: 0;
+}
+
+.flight-search > p {
+  color: #80659d;
+}
+
+.flight-trip-type {
+  display: flex;
+  gap: 10px;
+  margin: 22px 0;
+}
+
+.flight-trip-type button {
+  flex: 1 1 100px;
+  border: 1px solid #d7c2ef;
+  background: #f3eafb;
+  color: #59348f;
+  border-radius: 12px;
+  padding: 13px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.flight-trip-type button.active {
+  background: #7045a3;
+  color: white;
+}
+
+.flight-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.flight-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.flight-field label {
+  font-weight: bold;
+  color: #35204f;
+}
+
+.flight-field input,
+.flight-field select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px;
+  border: 1px solid #d7c2ef;
+  border-radius: 12px;
+  background: white;
+  font-size: 15px;
+}
+
+.flight-submit {
+  width: 100%;
+  margin-top: 22px;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  background: #7045a3;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.flight-submit:hover {
+  background: #59348f;
+}
+
+.flight-message {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 12px;
+  background: #f3eafb;
+  color: #59348f;
+}
+
+@media (max-width: 600px) {
+  .flight-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .flight-search {
+    padding: 20px;
+  }
+}
+
+/* AUTENTICACIÓN ARMY TRAVEL */
+
+.auth-container {
+  max-width: 420px;
+  margin: 50px auto;
+  padding: 32px;
+  background: white;
+  border-radius: 22px;
+  box-shadow: 0 8px 30px #00000012;
+}
+
+.auth-container h1,
+.auth-container h2 {
+  color: #7045a3;
+  text-align: center;
+}
+
+.auth-container > p {
+  text-align: center;
+  color: #80659d;
+}
+
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.auth-container label {
+  color: #35204f;
+  font-weight: bold;
+}
+
+.auth-container input {
+  padding: 14px;
+  border: 1px solid #d7c2ef;
+  border-radius: 12px;
+  font-size: 15px;
+}
+
+.auth-container form button {
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: #7045a3;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.auth-container form button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.auth-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 22px;
+  align-items: center;
+}
+
+.auth-links button {
+  background: none;
+  border: none;
+  color: #7045a3;
+  cursor: pointer;
+}
+
+.auth-message {
+  padding: 14px;
+  background: #f3eafb;
+  border-radius: 12px;
+  color: #59348f;
+  margin-top: 18px;
+}
+
+/* INICIO DE SESIÓN CON GOOGLE */
+
+.auth-google {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.auth-google p {
+  color: #80659d;
+  margin-bottom: 16px;
+}
+
+.auth-google button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background: white;
+  border: 1px solid #d7c2ef;
+  border-radius: 12px;
+  color: #35204f;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.auth-google button:hover {
+  background: #f7f1ff;
+}
+
+.auth-google button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.google-icon {
+  color: #4285f4;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* PERFIL ARMY */
+
+.perfil-page {
+  max-width: 750px;
+  margin: 32px auto;
+  padding: 16px;
+}
+
+.perfil-card {
+  background: #ffffff;
+  color: #35204f;
+  border: 1px solid #e8d8f5;
+  border-radius: 18px;
+  padding: 24px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.perfil-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.perfil-avatar-vacio {
+  background: #eee2fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+}
+
+.perfil-rol {
+  background: #eee2fa;
+  color: #6d3b9c;
+  border-radius: 20px;
+  padding: 8px 14px;
+  width: fit-content;
+  font-weight: bold;
+}
+
+.perfil-card input,
+.perfil-card textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #d7c2ef;
+  border-radius: 10px;
+  font: inherit;
+}
+
+.perfil-card button {
+  padding: 14px;
+  background: #8050b5;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.perfil-card button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* Adaptación móvil: navegación compacta y controles táctiles. */
+.mobile-nav-header { display: none; }
+.app button, .auth-container button { min-height: 44px; touch-action: manipulation; }
+.app :focus-visible, .auth-container :focus-visible { outline: 3px solid #9333ea; outline-offset: 3px; }
+.app p, .app h1, .app h2, .app h3, .app h4 { overflow-wrap: anywhere; }
+.app button { max-width: 100%; white-space: normal; }
+.app img { max-width: 100%; }
+
+@media (max-width: 640px) {
+  .app { padding: 12px; padding-bottom: max(24px, env(safe-area-inset-bottom)); }
+  .app-navigation { position: sticky; top: max(8px, env(safe-area-inset-top)); z-index: 40; margin-bottom: 16px; background: #fff; border: 1px solid #e8d8f5; border-radius: 16px; box-shadow: 0 4px 18px #35234d12; }
+  .mobile-nav-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 12px; }
+  .mobile-nav-header span { font-weight: bold; font-size: 17px; }
+  .mobile-nav-header button { border: 1px solid #d4c5e7; background: #f3e8ff; color: #5b218b; padding: 10px 12px; border-radius: 10px; font: inherit; }
+  .app-nav { display: none; margin: 0; box-shadow: none; border-radius: 0 0 16px 16px; }
+  .app-nav.is-open { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; max-height: 60dvh; overflow-y: auto; overscroll-behavior: contain; padding: 8px; }
+  .app-nav button { font-size: 14px; min-height: 48px; padding: 12px 8px; }
+  .app input, .app textarea, .app select, .auth-container input { font-size: 16px; max-width: 100%; min-width: 0; }
+  .app textarea { resize: vertical; }
+  .perfil-page { padding: 0; margin: 20px 0; }
+  .perfil-card, .travel-form, .calculator, .savings, .next-trip, .flight-search, .trip-card { padding: 16px; border-radius: 16px; }
+  .dashboard-hero, .hero { padding: 22px; border-radius: 18px; }
+  .hero h1 { font-size: clamp(22px, 6vw, 28px); }
+  .dashboard-grid { gap: 10px; }
+  .main-actions button { min-width: 0; flex-basis: 100%; }
+  .flight-trip-type { flex-wrap: wrap; }
+  .auth-container { margin: 16px 12px; padding: 22px; }
+  footer { font-size: 13px; padding: 24px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-bar div, .next-trip-progress div { transition: none; }
+}
+

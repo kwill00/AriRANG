@@ -1,0 +1,16 @@
+{
+  "id": "/",
+  "name": "ARMY Travel",
+  "short_name": "ARMY Travel",
+  "description": "Tus viajes, proyectos y comunidad ARMY en un solo lugar.",
+  "lang": "es",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#faf7ff",
+  "theme_color": "#7045a3",
+  "icons": [
+    { "src": "/army-mark.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/army-mark.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

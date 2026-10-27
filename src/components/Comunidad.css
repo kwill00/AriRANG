@@ -1,0 +1,46 @@
+.comunidad { margin: 24px 0; }
+.comunidad-tarjeta { margin: 20px 0; padding: 22px; border: 1px solid #d8b4fe; border-radius: 18px; background: #fff; }
+.comunidad textarea, .comunidad select { width: 100%; padding: 12px; border: 1px solid #c4b5d5; border-radius: 10px; font: inherit; color: #35234d; background: white; }
+.comunidad textarea { resize: vertical; }
+.comunidad button { padding: 10px 14px; border: 1px solid #c4a2ea; border-radius: 10px; color: #5b218b; background: #f3e8ff; cursor: pointer; font: inherit; }
+.comunidad button:disabled { opacity: .55; cursor: default; }
+.comunidad :focus-visible { outline: 3px solid #9333ea; outline-offset: 3px; }
+.comunidad-acciones { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+.comunidad .finger-heart { display: inline-flex; align-items: center; gap: 8px; color: #8b3cc7; }
+.comunidad .finger-heart[aria-pressed="true"] { background: #e9d5ff; border-color: #8b3cc7; }
+.comunidad-texto { white-space: pre-wrap; overflow-wrap: anywhere; }
+.comunidad h3 { overflow-wrap: anywhere; }
+.comunidad-comentarios { margin-top: 20px; padding-top: 12px; border-top: 1px solid #e9d5ff; }
+.comunidad-comentarios article { padding: 14px 0; border-bottom: 1px solid #eee; }
+
+.autor-social { margin: 12px 0; }
+.comunidad .autor-social-boton { display: inline-flex; align-items: center; gap: 10px; text-align: left; max-width: 100%; overflow-wrap: anywhere; background: transparent; border-color: transparent; }
+.autor-social-avatar { display: inline-grid; flex-shrink: 0; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: #e9d5ff; color: #5b218b; font-weight: bold; }
+.social-conexiones { margin: 16px 0; padding: 14px; background: #faf5ff; border-radius: 12px; }
+.social-conexiones ul { list-style: none; padding: 0; margin: 0; }
+.social-conexiones li { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; padding: 10px 0; border-bottom: 1px solid #e9d5ff; }
+.social-conexiones li button:first-child { overflow-wrap: anywhere; max-width: 100%; text-align: left; }
+.social-navegacion .comunidad-tarjeta { padding: clamp(12px, 3vw, 22px); }
+
+.proyecto-filtros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr)); gap: 12px; }
+.proyecto-datos { color: #604078; font-size: .95rem; overflow-wrap: anywhere; }
+
+.mobile-community-tools { display: none; }
+@media (max-width: 640px) {
+  .comunidad { margin: 18px 0; }
+  .comunidad-tarjeta { padding: 16px; margin: 16px 0; border-radius: 16px; }
+  .mobile-community-tools { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 16px 0; }
+  .mobile-community-tools button { padding: 12px 8px; font-weight: bold; }
+  .comunidad-compositor:not(.is-open), .proyecto-filtros:not(.is-open) { display: none; }
+  .proyecto-filtros-grid { grid-template-columns: 1fr; gap: 0; }
+  .comunidad-acciones { gap: 8px; }
+  .comunidad-acciones button { flex: 1 1 120px; }
+  .comunidad button { min-height: 44px; overflow-wrap: anywhere; }
+  .autor-social-boton { padding-left: 0; }
+  .comunidad .social-navegacion .comunidad-tarjeta { padding: 12px; border-color: #e9d5ff; }
+  .social-conexiones { padding: 12px; }
+  .social-conexiones li { align-items: stretch; }
+}
+
+.busqueda-activa { padding: 12px; margin: 12px 0; background: #eee5fa; border-radius: 12px; overflow-wrap: anywhere; }
+.busqueda-activa p { margin-top: 0; }

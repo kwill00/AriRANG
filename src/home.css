@@ -1,0 +1,84 @@
+.app .app-nav.nav-gallery { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 9px; padding: 12px; background: #ffffffb8; border-radius: 22px; border-color: #e2d7ec; box-shadow: 0 8px 26px #4c2d7010; }
+.app .app-nav.nav-gallery .nav-tile { position: relative; display: flex; align-items: center; justify-content: flex-start; gap: 8px; min-width: 0; min-height: 82px; padding: 9px 11px; border: 1px solid transparent; border-radius: 15px; background: #f8f4fc; color: #5d3e79; text-align: left; font-size: 12px; line-height: 1.3; font-weight: 650; }
+.nav-tile-art { display: block; flex: 0 0 53px; width: 53px; height: 45px; border-radius: 12px; color: #7955a0; }
+.nav-tile-art svg { width: 100%; height: 100%; overflow: visible; }
+.nav-tile-label { overflow-wrap: anywhere; }
+.app .app-nav.nav-gallery .nav-tile--flight, .app .app-nav.nav-gallery .nav-tile--trip { background: #eff4fb; color: #385579; }
+.nav-tile--flight .nav-tile-art, .nav-tile--trip .nav-tile-art { color: #5a77a5; }
+.app .app-nav.nav-gallery .nav-tile--community, .app .app-nav.nav-gallery .nav-tile--people { background: #eff7f4; color: #35685d; }
+.nav-tile--community .nav-tile-art, .nav-tile--people .nav-tile-art { color: #528979; }
+.app .app-nav.nav-gallery .nav-tile--create, .app .app-nav.nav-gallery .nav-tile--project { background: #fff5ed; color: #865335; }
+.nav-tile--create .nav-tile-art, .nav-tile--project .nav-tile-art { color: #a87351; }
+.app .app-nav.nav-gallery .nav-tile--exit { background: #f6f3f7; color: #6f6176; }
+.app .app-nav.nav-gallery .nav-tile.active { background: #6f429f; border-color: #61358f; color: white; box-shadow: 0 5px 13px #70459c24; }
+.nav-tile.active .nav-tile-art { color: #cfb0e8; }
+.nav-active-dot { position: absolute; width: 5px; height: 5px; right: 10px; top: 9px; background: #fff; border-radius: 50%; }
+.app .app-nav.nav-gallery .nav-tile:hover:not(.active) { border-color: #c9b2de; filter: brightness(.985); }
+.app .dashboard-hero { display: grid; grid-template-columns: minmax(0, 1fr) 260px; align-items: center; padding: 36px 34px; }
+.dashboard-hero-copy { position: relative; z-index: 1; }
+.app .dashboard-hero-copy > span { font-size: 10px; letter-spacing: 2.2px; font-weight: 650; }
+.app .dashboard-hero h1 { font-size: clamp(26px, 3.5vw, 37px); margin: 14px 0; }
+.app .dashboard-hero p { margin: 0; color: #f5eaff; }
+.dashboard-hero-art { min-width: 0; }
+.dashboard-hero-art svg { display: block; width: 100%; }
+.home-shortcuts { margin: 30px 0; }
+.home-section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 15px; }
+.app .home-section-heading h2 { font-size: 22px; margin: 0; letter-spacing: -.6px; }
+.home-section-heading > span { color: #756580; font-size: 12px; }
+.home-shortcut-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 13px; }
+.app .home-shortcut { position: relative; display: flex; flex-direction: column; align-items: flex-start; min-width: 0; padding: 18px; border: 1px solid #e7d8f2; border-radius: 21px; color: #49305e; background: linear-gradient(155deg, #f3eafa, #fff); text-align: left; box-shadow: 0 4px 13px #46305006; }
+.app .home-shortcut--trip { background: linear-gradient(155deg, #e9f0fb, #fff); border-color: #d8e3f0; }
+.app .home-shortcut--project { background: linear-gradient(155deg, #fff0e2, #fff); border-color: #f0dfcf; }
+.app .home-shortcut--community { background: linear-gradient(155deg, #e7f3ed, #fff); border-color: #d6e8df; }
+.shortcut-art { display: block; width: 112px; max-width: 100%; height: 84px; color: #8057a1; margin-bottom: 10px; }
+.shortcut-art svg { width: 100%; height: 100%; }
+.home-shortcut--trip .shortcut-art { color: #5c7caa; }
+.home-shortcut--project .shortcut-art { color: #b48157; }
+.home-shortcut--community .shortcut-art { color: #5b8e7e; }
+.shortcut-copy { display: flex; flex-direction: column; gap: 7px; padding-right: 8px; }
+.shortcut-copy strong { color: #473255; font-size: 15px; font-weight: 700; line-height: 1.3; }
+.shortcut-copy > span { color: #706375; font-size: 12px; line-height: 1.5; }
+.shortcut-arrow { position: absolute; top: 17px; right: 17px; width: 27px; height: 27px; border-radius: 50%; background: #ffffffc9; border: 1px solid #ffffff; display: grid; place-items: center; font-size: 18px; color: #76518f; }
+.app .home-shortcut:hover { border-color: #bfa5d4; box-shadow: 0 9px 24px #5e3d7f12; }
+.app .dashboard-stat { border-radius: 18px; background: #fffcff; }
+.auth-travel-art { color: #8250b4; width: 104px; height: 78px; margin: -12px auto 0; }
+.auth-travel-art svg { width: 100%; height: 100%; }
+.auth-container .auth-guest-card { display: flex; align-items: center; gap: 10px; width: 100%; background: #f7f1fc; color: #54316f; border: 1px solid #dfcbea; border-radius: 17px; padding: 9px 12px; text-align: left; margin: 18px 0 24px; box-shadow: 0 4px 12px #61368908; }
+.auth-guest-art { flex: 0 0 57px; width: 57px; height: 48px; color: #8d66b1; }
+.auth-guest-art svg { width: 100%; height: 100%; }
+.auth-guest-card > span:nth-child(2) { flex: 1; min-width: 0; }
+.auth-guest-card strong, .auth-guest-card small { display: block; }
+.auth-guest-card strong { font-size: 14px; }
+.auth-guest-card small { font-size: 11px; font-weight: 400; margin-top: 4px; color: #6c547b; }
+.auth-container .auth-submit { border-radius: 15px; background: linear-gradient(110deg, #673897, #8d58b8); box-shadow: 0 7px 16px #71439b20; }
+.auth-submit > span { margin-left: 9px; }
+@media (min-width: 641px) and (max-width: 900px) {
+  .app .app-nav.nav-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .home-shortcut-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .app .dashboard-hero { grid-template-columns: minmax(0, 1fr) 190px; }
+}
+@media (max-width: 640px) {
+  .app .app-nav.nav-gallery { display: none; border: 0; padding: 8px; border-radius: 0 0 16px 16px; }
+  .app .app-nav.nav-gallery.is-open { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-height: 65dvh; overflow-y: auto; }
+  .app .app-nav.nav-gallery .nav-tile { min-height: 73px; padding: 8px; font-size: 12px; gap: 5px; }
+  .nav-tile-art { flex-basis: 43px; width: 43px; height: 38px; }
+  .app .dashboard-hero { grid-template-columns: minmax(0, 1fr); padding: 25px; }
+  .dashboard-hero-art { position: absolute; width: 155px; right: -25px; bottom: -27px; opacity: .28; }
+  .app .dashboard-hero h1 { max-width: 260px; font-size: 28px; }
+  .app .dashboard-hero p { max-width: 250px; font-size: 14px; }
+  .home-shortcuts { margin: 24px 0; }
+  .home-section-heading { display: block; }
+  .home-section-heading > span { display: block; margin-top: 7px; }
+  .home-shortcut-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .app .home-shortcut { padding: 14px; border-radius: 18px; }
+  .shortcut-art { width: 94px; height: 70px; margin-bottom: 9px; }
+  .shortcut-copy strong { font-size: 14px; }
+  .shortcut-copy > span { font-size: 11px; }
+  .shortcut-arrow { top: 12px; right: 10px; width: 23px; height: 23px; font-size: 16px; }
+  .auth-travel-art { width: 88px; height: 66px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .app .app-nav.nav-gallery .nav-tile, .app .home-shortcut { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+  .app .home-shortcut:hover { transform: translateY(-3px); }
+  .app .app-nav.nav-gallery .nav-tile:hover { transform: translateY(-1px); }
+}
