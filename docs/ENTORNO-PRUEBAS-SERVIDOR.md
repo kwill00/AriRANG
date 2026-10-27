@@ -97,3 +97,26 @@ ni cambiar el origen sin actualizar la configuración del sandbox.
 
 El reparto efectivo, OAuth de organizadoras y cobros reales siguen pendientes.
 No usar `db push` indiscriminado ni ejecutar el bootstrap sobre una base existente.
+
+## Conexión del proveedor confirmada posteriormente
+
+El operador guardó los dos secretos de Mercado Pago directamente en el proyecto
+de pruebas. Se comprobó su presencia por nombre, sin consultar sus valores.
+Se desplegó además `mercadopago-connection-test` con JWT obligatorio y se ejecutó
+su consulta de solo lectura a `/users/me`, protegida por una clave de diagnóstico
+aleatoria y efímera. Resultado real del proveedor desde Supabase: HTTP 200,
+`ok=true`, `environment=sandbox`, `country=AR`, `livePaymentsEnabled=false`.
+
+La clave efímera `MERCADOPAGO_DIAGNOSTIC_KEY` se retiró al finalizar; no se guardó
+su valor en archivos ni Git. El diagnóstico queda cerrado sin esa clave. Los
+secretos de token y webhook del operador se conservaron.
+
+La aplicación local responde HTTP 200 y su módulo de Supabase referencia
+`jdkjqsxcycpfowydciaq`, sin apuntar a producción. Se conservó el servidor que ya
+ocupaba 5173, sin reemplazarlo. En la consulta de estado previa había cero cuentas,
+cero administradores, cero consentimientos adultos y cero órdenes en el sandbox.
+Se solicitó al operador registrarse y confirmar el correo; aún falta esa sesión
+para crear el checkout y ejecutar compra/reembolso con el comprador de prueba.
+No se han creado pagos ni reembolsos ni validado todavía la firma de una notificación
+real del proveedor. Esta comprobación acredita la conexión de la cuenta vendedora,
+no todo el circuito de pago. Producción y Netlify no se modificaron.
