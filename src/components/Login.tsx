@@ -26,7 +26,7 @@ export default function Login({ onGuest }: { onGuest?: () => void }) {
     try {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
-        options: { redirectTo: 'https://armytravellatam.com/', queryParams: { prompt: 'select_account' } },
+        options: { redirectTo: window.location.origin, queryParams: { prompt: 'select_account' } },
       })
       if (error) throw error
     } catch {

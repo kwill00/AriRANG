@@ -78,7 +78,8 @@ no equivalen al ciclo completo de Mercado Pago en el nuevo servidor.
    No compartir los valores en chat, frontend, capturas ni repositorio.
 4. Abrir la app local, registrarse por correo con una casilla que controle el
    operador, elegir franja adulta, aceptar los avisos y confirmar el correo.
-   No usar Google: el flujo existente apunta al sitio de producción.
+   Usar correo hasta configurar Google en el sandbox. El retorno del login ya
+   respeta el origen local; en producción conserva su dominio.
 5. Identificar su UUID en Auth del proyecto nuevo y asignarle el rol de prueba
    desde SQL Editor (`update public.perfiles set rol='admin' where id='UUID';`).
    No se concedieron permisos administrativos automáticamente por un correo.

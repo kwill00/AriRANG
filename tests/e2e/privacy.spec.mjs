@@ -57,6 +57,20 @@ test('five languages update interface and html lang without losing form input',a
   await expect(page.locator('#auth-email')).toHaveValue('fixture@example.invalid')
  }
 })
+test('Google login returns to the current local origin without reaching Google',async({page})=>{
+ await fixtureNetwork(page)
+ let redirect
+ await page.route('**/auth/v1/authorize?**',async route=>{
+  const url=new URL(route.request().url())
+  redirect=url.searchParams.get('redirect_to')
+  expect(url.searchParams.get('provider')).toBe('google')
+  await route.fulfill({status:200,contentType:'text/html',body:'<p>OAuth fixture</p>'})
+ })
+ await page.goto('/')
+ await page.getByRole('button',{name:'Ingresar con Google',exact:true}).click()
+ await expect.poll(()=>redirect).toBe('http://127.0.0.1:5187')
+})
+
 test('cookies start denied; reject persists; accepting and revoking are independent of login',async({page})=>{
  const calls=await fixtureNetwork(page);await page.goto('/')
  await page.getByRole('button',{name:'Configurar',exact:true}).click()

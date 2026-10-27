@@ -74,7 +74,8 @@ update privacy_private.configuration set public_ready=true where singleton;
 En Auth → URL Configuration, configurá la URL local `http://127.0.0.1:5173` para
 confirmación/inicio de sesión. Usá registro por correo, con una casilla dedicada
 que controles una vez arrancada la app del paso 2, elegí la franja adulta y completá los consentimientos. No uses
-Google: el flujo existente apunta al dominio de producción. Tras confirmar el
+Google hasta configurar ese proveedor en el proyecto nuevo. El login ya usa el
+origen de la ventana como retorno: local en desarrollo y su dominio en producción. Tras confirmar el
 correo e ingresar, obtené el UUID de ese usuario en Auth y, solo en el SQL Editor
 de pruebas, asignale el rol de prueba:
 
