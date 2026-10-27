@@ -36,7 +36,7 @@ En el entorno restringido de Codex, el runner E2E terminó sus casos pero quedó
 
 - Cuenta autenticada declarada adulta, política vigente, organizadora aprobada, cuenta de proveedor y país habilitados como requisitos de contexto confiable.
 - Producto/importe/periodicidad del catálogo del servidor, nunca porcentaje o destinatario calculado por el navegador.
-- Reparto 80/20 existente, total explícito, cero cargos adicionales al comprador y costos absorbidos por la plataforma dentro de su parte. Si los costos superan su parte, requiere revisión de financiación; no reduce la parte de la organizadora.
+- Reparto 75/25 existente, total explícito, cero cargos adicionales al comprador y costos absorbidos por la plataforma dentro de su parte. Si los costos superan su parte, requiere revisión de financiación; no reduce la parte de la organizadora.
 - Protección frente a autoaportes, importes inválidos y recurrencia incoherente; clave de idempotencia con formato validado.
 - Transiciones de pago, fallo, reembolso y disputa con eventos idempotentes, comprobación de moneda/importe/orden/pago y rechazo de eventos atrasados que pretendan reactivar un pago reembolsado.
 - Producción siempre rechazada en esta etapa. Un menor con evento parental verificado tampoco queda autorizado para un contrato financiero.

@@ -41,6 +41,8 @@ async function rejectsStatement(tx,run,pattern) {
  finally { await tx.exec('rollback to savepoint expected_rejection') }
 }
 test('all repository migrations execute on the disposable PostgreSQL fixture; defaults stay closed',()=>scenario(async tx=>{
+ const diagnostic=await tx.query(fs.readFileSync('supabase/diagnostico-acceso.sql','utf8'))
+ assert.ok(Object.values(diagnostic.rows[0]).every(value=>value===true))
  assert.equal((await tx.query('select public.privacy_registration_ready() as ready')).rows[0].ready,false)
  await asUser(tx,ids.adult,async()=>assert.equal((await tx.query('select public.privacy_access_allowed() as allowed')).rows[0].allowed,false))
 }))

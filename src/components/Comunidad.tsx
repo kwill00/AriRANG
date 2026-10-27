@@ -20,9 +20,11 @@ const errorTexto = (error: unknown) => {
 }
 
 function FingerHeart() {
-  return <svg viewBox="0 0 40 44" width="30" height="34" aria-hidden="true">
-    <path d="M20 12C8 5 12-2 20 4c8-6 12 1 0 8Z" fill="currentColor" />
-    <path d="m14 38-5-10c-2-4 2-7 5-3l2 3-4-13c-1-4 4-5 5-2l4 11 2-10c1-4 6-3 5 1l-2 13c8-2 10 5 5 10l-3 3H17Z" fill="#e9d5ff" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+  // Original geometric heart illustration, replacing the undocumented asset.
+  return <svg viewBox="0 0 40 44" width="30" height="34" aria-hidden="true" focusable="false">
+    <circle cx="20" cy="22" r="17" fill="#f3eafa" />
+    <path d="M20 32 10 22C2 11 17 7 20 16c3-9 18-5 10 6Z" fill="#e9d5ff" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+    <path d="m32 5 1.5 4.5L38 11l-4.5 1.5L32 17l-1.5-4.5L26 11l4.5-1.5Z" fill="currentColor" />
   </svg>
 }
 

@@ -3,7 +3,7 @@
 - Plataforma operada desde Argentina; organizadores de LATAM. Países concretos aún no definidos; habilitarlos por lista explícita después de aprobación del proveedor.
 - Donaciones únicas y suscripciones pagas recurrentes para organizadores aprobados.
 - Cobro solicitado en USD; liquidación al organizador en moneda local.
-- Comisión bruta ARMY Travel: 20%. Parte del organizador: 80% antes de posibles impuestos y cargos externos a la política acordada.
+- Comisión bruta ARMY Travel: 25%. Parte del organizador: 75% antes de posibles impuestos y cargos externos a la política acordada.
 - Los costos del proveedor los absorbe ARMY Travel dentro de su comisión. No descontarlos por segunda vez del organizador.
 
 ## Estado real
@@ -23,9 +23,9 @@ Fuentes oficiales consultadas:
 
 ## Regla de reparto
 
-El bruto y los costos se reciben en centavos USD enteros. El 20% se redondea al centavo más cercano y la parte del organizador es la diferencia exacta, sin perder centavos. Si los costos superan el 20%, el resultado identifica un déficit de plataforma; no lo carga al organizador. Las tarifas mínimas del proveedor deben verificarse antes de admitir importes pequeños.
+El bruto y los costos se reciben en centavos USD enteros. El 25% se redondea al centavo más cercano y la parte del organizador es la diferencia exacta, sin perder centavos. Si los costos superan el 25%, el resultado identifica un déficit de plataforma; no lo carga al organizador. Las tarifas mínimas del proveedor deben verificarse antes de admitir importes pequeños.
 
-Ejemplo ilustrativo, no cotización del proveedor: bruto US$10, comisión bruta US$2, organizador US$8, costo hipotético US$0,65 y neto plataforma US$1,35. El equivalente local requiere una cotización real, identificada y aceptada. No inventar cotizaciones ni prometer desembolso inmediato.
+Ejemplo ilustrativo, no cotización del proveedor: bruto US$10, comisión bruta US$2,50, organizador US$7,50, costo hipotético US$0,65 y neto plataforma US$1,85. El equivalente local requiere una cotización real, identificada y aceptada. No inventar cotizaciones ni prometer desembolso inmediato.
 
 ## Flujo que deberá implementar el adaptador del proveedor
 

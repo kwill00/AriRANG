@@ -1,4 +1,8 @@
 export const feedbackMessages: Record<string, readonly [string, string, string, string]> = {
+  'Ingresar con Google': ['Sign in with Google', 'Google로 로그인', 'Entrar com Google', 'Googleでログイン'],
+  'Para cuentas existentes. Si todavía no tenés cuenta, registrate con tu correo y completá edad y consentimientos.': ['For existing accounts. To create an account, register with your email and complete age and consent choices.', '기존 계정용입니다. 새 계정은 이메일로 가입하고 연령 및 동의 항목을 작성하세요.', 'Para contas existentes. Para criar uma conta, cadastre seu e-mail e preencha idade e consentimentos.', '既存のアカウント用です。新規登録はメールで行い、年齢と同意の選択を完了してください。'],
+  'No se pudo iniciar el acceso con Google. Reintentá o usá tu correo.': ['Could not start Google sign-in. Try again or use your email.', 'Google 로그인을 시작하지 못했습니다. 다시 시도하거나 이메일을 사용하세요.', 'Não foi possível iniciar o acesso com Google. Tente novamente ou use seu e-mail.', 'Googleログインを開始できませんでした。再試行するかメールを使用してください。'],
+
  'Vos': ['You', '나', 'Você', 'あなた'],
  'Ver perfil de {nombre}': ['View profile of {nombre}', '{nombre} 프로필 보기', 'Ver perfil de {nombre}', '{nombre}のプロフィールを表示'],
  'Quitar finger heart. {total} reacciones': ['Remove finger heart. {total} reactions', '손가락 하트 취소. 반응 {total}개', 'Remover finger heart. {total} reações', 'フィンガーハートを解除。{total}件の反応'],

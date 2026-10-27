@@ -1,6 +1,30 @@
 .privacy-toolbar, .privacy-links, .privacy-banner, .privacy-account, .access-gate { color: #291939; background: #fff; padding: 1rem; border: 1px solid #695675; border-radius: .7rem; margin: .75rem auto; max-width: 70rem; }
 .privacy-toolbar { display: flex; align-items: center; justify-content: flex-end; gap: .75rem; }
 .privacy-toolbar select { width: auto; }
+.access-gate { max-width: 48rem; padding: clamp(1rem, 4vw, 2rem); border-color: #d2bce1; border-radius: 1.5rem; box-shadow: 0 16px 48px #5427710d; }
+.access-welcome { display: flex; align-items: center; gap: 1.25rem; padding-bottom: 1rem; text-align: left; }
+.access-art { flex: 0 0 7rem; color: #65368a; background: #f3eafa; border-radius: 1.5rem; }
+.access-art svg { display: block; width: 100%; }
+.access-welcome h1 { margin: .3rem 0; font-size: clamp(1.6rem, 4vw, 2.15rem); line-height: 1.2; }
+.access-welcome p { line-height: 1.6; margin: .5rem 0; }
+.access-eyebrow { color: #65368a; font-weight: 700; letter-spacing: .08em; }
+.access-fields { border: 0; padding: 0; margin: 0; min-width: 0; }
+.access-fields > legend { font-weight: 700; margin-bottom: .75rem; }
+.access-fields > label { display: grid; gap: .5rem; font-weight: 600; }
+.access-fields select { width: 100%; box-sizing: border-box; min-height: 48px; border: 1px solid #8e779f; border-radius: .75rem; padding: .7rem; font: inherit; }
+.access-gate .policy-choices { min-width: 0; margin: 1.5rem 0 .5rem; padding: .75rem 1rem; border: 1px solid #d2bce1; border-radius: 1rem; background: #fcf9ff; line-height: 1.6; }
+.access-gate .policy-choices label { padding: .5rem 0; font-weight: 500; cursor: pointer; }
+.access-gate input[type=checkbox] { accent-color: #65368a; }
+.access-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.access-gate button { border-radius: .75rem; font: inherit; cursor: pointer; }
+.access-gate .access-secondary { background: white; color: #5b287e; border-color: #d2bce1; }
+.access-hint { color: #5c4b68; font-size: .95rem; line-height: 1.6; }
+.access-feedback { background: #fff4e1; color: #553a16; border: 1px solid #b89a64; border-radius: 1rem; padding: 1rem; margin-top: 1rem; line-height: 1.6; }
+.access-feedback p { margin-top: 0; }
+.access-account { border-top: 1px solid #e4d8ec; margin-top: 1.5rem; padding-top: .75rem; }
+.access-account > summary { min-height: 44px; display: list-item; align-content: center; cursor: pointer; font-weight: 600; }
+.access-account .privacy-account { border: 0; padding: .5rem 0; }
+@media (max-width: 480px) { .access-welcome { flex-direction: column; align-items: flex-start; gap: .75rem; } .access-art { flex: none; width: 4rem; } .access-actions button { width: 100%; } }
 .privacy-actions, .privacy-links nav { display: flex; gap: .6rem; flex-wrap: wrap; }
 .privacy-actions { max-width: 70rem; margin: .75rem auto; }
 .privacy-banner { border-width: 2px; }

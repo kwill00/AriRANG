@@ -26,3 +26,10 @@ dist-ssr
 .env.*.local
 /test-results/
 /playwright-report/
+/supabase/.temp/
+/.netlify/
+/supabase/functions/.env
+/supabase/functions/.env.*
+**/.env
+**/.env.*
+!**/.env.example

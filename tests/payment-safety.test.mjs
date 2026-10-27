@@ -3,10 +3,10 @@ import assert from 'node:assert/strict'
 import { preparePayment, applyVerifiedSandboxEvent } from '../supabase/functions/_shared/payment-safety.ts'
 const context={authenticatedUserId:'payer-fixture',ageStatus:'adult_declared',policyCurrent:true,organizerApproved:true,organizerProviderAccount:'sandbox-organizer-fixture',countryApproved:true,environment:'sandbox'}
 const product={id:'donation-fixture',organizerId:'organizer-fixture',active:true,amountUsdCents:1000,providerCostUsdCents:65,kind:'donation',interval:null}
-test('server preparation preserves 80/20, shows total and fees, and never represents a checkout or completed payment',()=>{
+test('server preparation preserves 75/25, shows total and fees, and never represents a checkout or completed payment',()=>{
  const order=preparePayment(context,product,'fixture_order_0001')
  assert.equal(order.totalUsdCents,1000);assert.equal(order.extraBuyerFeesUsdCents,0)
- assert.equal(order.split.organizadorCentavos,800);assert.equal(order.split.netoPlataformaCentavos,135)
+ assert.equal(order.split.organizadorCentavos,750);assert.equal(order.split.netoPlataformaCentavos,185)
  assert.equal(order.status,'prepared_without_checkout');assert.equal(order.environment,'sandbox')
  assert.equal(order.checkoutUrl,undefined)
 })
@@ -26,7 +26,7 @@ test('unapproved organizers, unavailable products, self-payments and undisclosed
 })
 test('negative, fractional and underfunded orders are blocked without lowering organizer share',()=>{
  for(const amountUsdCents of [-1,0,1.2,Infinity]) assert.throws(()=>preparePayment(context,{...product,amountUsdCents},'fixture_order_0001'),RangeError)
- assert.throws(()=>preparePayment(context,{...product,providerCostUsdCents:250},'fixture_order_0001'),/FUNDING_REVIEW/)
+ assert.throws(()=>preparePayment(context,{...product,providerCostUsdCents:300},'fixture_order_0001'),/FUNDING_REVIEW/)
  assert.throws(()=>preparePayment(context,product,'short'),/IDEMPOTENCY/)
 })
 const ledger={orderId:'order-fixture',paymentId:'provider-payment-fixture',amountUsdCents:1000,state:'pending',appliedEventIds:[]}

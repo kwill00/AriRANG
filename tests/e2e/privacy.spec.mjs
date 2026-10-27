@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 const userId='00000000-0000-4000-8000-000000000001'
 const user={id:userId,aud:'authenticated',role:'authenticated',email:'fixture@example.invalid',user_metadata:{avatar_url:'https://lh3.googleusercontent.com/fixture'},app_metadata:{provider:'email'},created_at:'2026-10-25T00:00:00Z'}
 const jwt=[{alg:'HS256',typ:'JWT'},{sub:userId,aud:'authenticated',role:'authenticated',exp:Math.floor(Date.now()/1000)+3600},'fixture-signature'].map((v,i)=>i===2?v:Buffer.from(JSON.stringify(v)).toString('base64url')).join('.')
-async function fixtureNetwork(page,{access=true,deleteOk=false,mode=access?'adult':'restricted',teenReady=false}={}) {
+async function fixtureNetwork(page,{access=true,deleteOk=false,mode=access?'adult':'restricted',teenReady=false,acceptSuccess=false}={}) {
  const calls=[]
  const proposals=[]
  await page.route('**/*',async route=>{
@@ -28,7 +28,10 @@ async function fixtureNetwork(page,{access=true,deleteOk=false,mode=access?'adul
   else if(path.endsWith('/rpc/privacy_registration_ready')) body=false
   else if(path.endsWith('/rpc/privacy_teen_registration_ready')) body=teenReady
   else if(path.endsWith('/auth/v1/signup')) {status=400;body={msg:'Synthetic signup only',code:'fixture_only'}}
-  else if(path.endsWith('/rpc/privacy_accept_adult')) {status=403;body={message:'Access restricted'}}
+  else if(path.endsWith('/rpc/privacy_accept_adult') || path.endsWith('/rpc/privacy_accept_teen')) {
+   if(acceptSuccess) {access=path.endsWith('/rpc/privacy_accept_adult');mode=access?'adult':'minor_limited';body=null}
+   else {status=403;body={message:'Access restricted'}}
+  }
   else if(path.endsWith('/rpc/es_admin')) body=false
   else if(path.endsWith('/rpc/social_perfil')) body={usuario_id:userId,nombre:'Alias fixture',biografia:'',visible:false,seguidores:0,siguiendo:0,suscripciones:0,donaciones:0,lo_sigo:false}
   else if(path.endsWith('/rest/v1/perfiles')) body={nombre:'Alias fixture',avatar_url:'https://lh3.googleusercontent.com/fixture',biografia:'',pais:'',rol:'army',verificada:false}
@@ -104,13 +107,59 @@ test('adult registration requires separate unchecked choices and refuses an unco
 })
 test('authenticated unreviewed account stays behind the access gate',async({page})=>{
  const calls=await fixtureNetwork(page,{access:false});await page.goto('/');await signIn(page)
- await expect(page.getByRole('heading',{name:'Revisar acceso',exact:true})).toBeVisible()
+ await expect(page.getByRole('heading',{name:'Un paso más para encontrarnos',exact:true})).toBeVisible()
  await page.getByRole('combobox',{name:'Edad',exact:true}).selectOption('under14')
  await expect(page.getByRole('heading',{name:'Menores de 14 y autorización parental'})).toBeVisible()
  await expect(page.getByRole('button',{name:'Continuar',exact:true})).toBeDisabled()
  await expect(page.locator('.app-nav')).toHaveCount(0)
  expect(calls.some(c=>c.path.endsWith('/rpc/privacy_restrict_minor'))).toBe(true)
 })
+for (const age of ['adult','teen']) test(`saved ${age} acceptance removes the gate and stays accepted on reload`,async({page})=>{
+ const calls=await fixtureNetwork(page,{access:false,acceptSuccess:true})
+ await page.goto('/');await signIn(page)
+ await expect(page.locator('.access-gate')).toBeVisible()
+ await page.getByRole('combobox',{name:'Edad',exact:true}).selectOption(age)
+ const boxes=page.locator('.access-gate .policy-choices input[type=checkbox]')
+ await expect(boxes.nth(0)).not.toBeChecked();await expect(boxes.nth(1)).not.toBeChecked()
+ await boxes.nth(0).check();await boxes.nth(1).check()
+ await page.getByRole('button',{name:'Continuar',exact:true}).click()
+ await expect(page.locator('.access-welcome')).toHaveCount(0)
+ if(age==='adult') await expect(page.locator('.app-nav')).toBeVisible()
+ else await expect(page.locator('.safe-community')).toBeVisible()
+ await page.reload()
+ await expect(page.locator('.access-welcome')).toHaveCount(0)
+ expect(calls.filter(c=>c.path.endsWith(`/rpc/privacy_accept_${age}`))).toHaveLength(1)
+})
+
+test('failed acceptance keeps choices, supports retry and fits a small screen',async({page})=>{
+ await fixtureNetwork(page,{access:false})
+ await page.setViewportSize({width:320,height:900});await page.goto('/');await signIn(page)
+ await page.getByRole('combobox',{name:'Edad',exact:true}).selectOption('adult')
+ const boxes=page.locator('.access-gate .policy-choices input[type=checkbox]')
+ await boxes.nth(0).check();await boxes.nth(1).check()
+ await page.getByRole('button',{name:'Continuar',exact:true}).click()
+ await expect(page.locator('.access-feedback')).toContainText('No se pudo guardar tu aceptación')
+ await expect(boxes.nth(0)).toBeChecked();await expect(boxes.nth(1)).toBeChecked()
+ await expect(page.locator('.access-account')).not.toHaveAttribute('open','')
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true)
+ await page.screenshot({path:test.info().outputPath('access-320.png'),fullPage:true})
+ await page.getByRole('button',{name:'Volver a comprobar',exact:true}).click()
+ await expect(page.locator('.access-gate')).toBeVisible()
+ await expect(page.locator('.app-nav')).toHaveCount(0)
+})
+
+test('a temporary access lookup failure can be retried without accepting again',async({page})=>{
+ await fixtureNetwork(page,{access:false})
+ let failing=true
+ await page.route('**/rpc/privacy_access_mode',route=>route.fulfill({status:failing?503:200,contentType:'application/json',body:JSON.stringify(failing?{message:'Unavailable'}:'adult')}))
+ await page.goto('/');await signIn(page)
+ await expect(page.locator('.access-feedback')).toContainText('No pudimos consultar tu acceso')
+ failing=false
+ await page.getByRole('button',{name:'Volver a comprobar',exact:true}).click()
+ await expect(page.locator('.access-welcome')).toHaveCount(0)
+ await expect(page.locator('.app-nav')).toBeVisible()
+})
+
 test('optional avatars are blocked, allowed explicitly, then removed immediately on revocation',async({page})=>{
  const calls=await fixtureNetwork(page);await page.goto('/');await signIn(page)
  await page.getByRole('button',{name:'👤 Mi perfil',exact:true}).click()

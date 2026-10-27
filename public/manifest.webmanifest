@@ -10,7 +10,6 @@
   "background_color": "#faf7ff",
   "theme_color": "#7045a3",
   "icons": [
-    { "src": "/army-mark.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
     { "src": "/army-mark.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
   ]
 }

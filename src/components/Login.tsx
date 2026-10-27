@@ -21,6 +21,19 @@ export default function Login({ onGuest }: { onGuest?: () => void }) {
   const [privacidad, setPrivacidad] = useState(false)
   const puedeRegistrarse = edad === 'adult' || edad === 'teen'
 
+  const ingresarConGoogle = async () => {
+    setMensaje(''); setCargando(true)
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: { redirectTo: 'https://armytravellatam.com/', queryParams: { prompt: 'select_account' } },
+      })
+      if (error) throw error
+    } catch {
+      setMensaje('No se pudo iniciar el acceso con Google. Reintentá o usá tu correo.')
+    } finally { setCargando(false) }
+  }
+
   const enviarFormulario = async (
    e: FormEvent<HTMLFormElement>
   ) => {
@@ -160,6 +173,11 @@ export default function Login({ onGuest }: { onGuest?: () => void }) {
         </button>
         </>}
       </form>
+      {modo === 'login' && <div className="auth-google">
+        <button type="button" disabled={cargando} onClick={() => void ingresarConGoogle()}>{t('Ingresar con Google')}</button>
+        <p>{t('Para cuentas existentes. Si todavía no tenés cuenta, registrate con tu correo y completá edad y consentimientos.')}</p>
+      </div>}
+
 
 
       {mensaje && (

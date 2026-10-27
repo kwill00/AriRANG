@@ -1,0 +1,46 @@
+begin;
+do $$ begin
+ if (select count(*) from auth.users) < 2 then raise exception 'Se necesitan dos cuentas para las pruebas'; end if;
+ if (select count(*) from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='public' and c.relname in ('comunidad_publicaciones','comunidad_comentarios','comunidad_hearts') and c.relrowsecurity) <> 3 then raise exception 'RLS no habilitado'; end if;
+ perform set_config('test.a',(select id::text from auth.users order by id limit 1),true);
+ perform set_config('test.b',(select id::text from auth.users order by id limit 1 offset 1),true);
+ perform set_config('request.jwt.claim.sub',current_setting('test.a'),true);
+end $$;
+set local role authenticated;
+do $$ declare p uuid; c uuid; begin
+ insert into public.comunidad_publicaciones(autor_id,titulo,contenido,tipo) values(auth.uid(),'Prueba RLS','Publicacion temporal de prueba','debate') returning id into p;
+ perform set_config('test.post',p::text,true);
+ insert into public.comunidad_comentarios(publicacion_id,autor_id,contenido) values(p,auth.uid(),'Comentario temporal') returning id into c;
+ perform set_config('test.comment',c::text,true);
+ insert into public.comunidad_hearts values(p,auth.uid());
+ begin insert into public.comunidad_hearts values(p,auth.uid()); raise exception 'FALLO: heart duplicado'; exception when unique_violation then null; end;
+ begin insert into public.comunidad_publicaciones(autor_id,titulo,contenido,tipo) values(current_setting('test.b')::uuid,'Suplantacion','Mensaje suplantado de prueba','publicacion'); raise exception 'FALLO: suplantacion'; exception when insufficient_privilege then null; end;
+ begin insert into public.comunidad_publicaciones(autor_id,titulo,contenido,tipo,creado_en) values(auth.uid(),'Fecha falsa','Mensaje temporal de prueba','publicacion',now()); raise exception 'FALLO: fecha falsificada'; exception when insufficient_privilege then null; end;
+ begin update public.comunidad_publicaciones set titulo='Cambio' where id=p; raise exception 'FALLO: actualizacion'; exception when insufficient_privilege then null; end;
+ begin insert into public.comunidad_comentarios(publicacion_id,autor_id,contenido) values(p,auth.uid(),''); raise exception 'FALLO: comentario vacio'; exception when check_violation then null; end;
+ begin insert into public.comunidad_comentarios(publicacion_id,autor_id,contenido) values(gen_random_uuid(),auth.uid(),'Referencia inexistente'); raise exception 'FALLO: referencia'; exception when insufficient_privilege or foreign_key_violation then null; end;
+ perform set_config('request.jwt.claim.sub',current_setting('test.b'),true);
+ if not exists(select 1 from public.comunidad_publicaciones where id=p) then raise exception 'FALLO: lectura B'; end if;
+ delete from public.comunidad_comentarios where id=c;
+ if found then raise exception 'FALLO: borrar comentario ajeno'; end if;
+ delete from public.comunidad_hearts where publicacion_id=p and usuario_id=current_setting('test.a')::uuid;
+ if found then raise exception 'FALLO: borrar heart ajeno'; end if;
+ insert into public.comunidad_comentarios(publicacion_id,autor_id,contenido) values(p,auth.uid(),'Respuesta B');
+ insert into public.comunidad_hearts values(p,auth.uid());
+ delete from public.comunidad_hearts where publicacion_id=p and usuario_id=auth.uid();
+ if not found then raise exception 'FALLO: quitar heart propio'; end if;
+ delete from public.comunidad_comentarios where publicacion_id=p and autor_id=auth.uid();
+ if not found then raise exception 'FALLO: borrar comentario propio'; end if;
+ if (select count(*) from public.comunidad_hearts where publicacion_id=p) <> 1 then raise exception 'FALLO: heart A alterado'; end if;
+end $$;
+reset role;
+set local role anon;
+do $$ begin
+ begin perform 1 from public.comunidad_publicaciones; raise exception 'FALLO: anon lee posts'; exception when insufficient_privilege then null; end;
+ begin perform 1 from public.comunidad_comentarios; raise exception 'FALLO: anon lee comentarios'; exception when insufficient_privilege then null; end;
+ begin perform 1 from public.comunidad_hearts; raise exception 'FALLO: anon lee hearts'; exception when insufficient_privilege then null; end;
+ begin insert into public.comunidad_hearts values(current_setting('test.post')::uuid,current_setting('test.a')::uuid); raise exception 'FALLO: anon escribe'; exception when insufficient_privilege then null; end;
+end $$;
+reset role;
+select 'PASS: RLS, dos usuarios, suplantacion, lectura anonima, unicidad, limites, borrado propio y aislamiento. Datos de prueba revertidos por ROLLBACK.' as resultado;
+rollback;

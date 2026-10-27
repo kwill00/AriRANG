@@ -1,3 +1,4 @@
+import CheckoutPrueba from './CheckoutPrueba'
 import { useT } from '../lib/locale'
 
 import { useEffect, useState } from 'react'
@@ -103,6 +104,7 @@ export default function PanelAdmin() {
       <h2>{t("🛡️ Administración de ARMY Travel")}</h2>
       <Moderacion />
       <ModeracionPrevia />
+      <CheckoutPrueba />
       <DonacionAdmin />
       <p>{t("Solicitudes pendientes:")}{' '}{solicitudes.length}</p>
 

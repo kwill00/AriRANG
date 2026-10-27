@@ -2,15 +2,15 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { calcularRepartoUSD } from '../supabase/functions/_shared/reparto-pagos.ts'
 
-test('US$10: organizador recibe US$8 y la plataforma absorbe el costo dentro de sus US$2', () => {
+test('US$10: organizador recibe US$7,50 y la plataforma absorbe el costo dentro de sus US$2,50', () => {
   const r = calcularRepartoUSD(1000, 65)
-  assert.equal(r.organizadorCentavos, 800)
-  assert.equal(r.comisionBrutaCentavos, 200)
-  assert.equal(r.netoPlataformaCentavos, 135)
+  assert.equal(r.organizadorCentavos, 750)
+  assert.equal(r.comisionBrutaCentavos, 250)
+  assert.equal(r.netoPlataformaCentavos, 185)
 })
-test('el costo superior al 20% no reduce la parte del organizador', () => {
-  const r = calcularRepartoUSD(1000, 250)
-  assert.equal(r.organizadorCentavos, 800)
+test('el costo superior al 25% no reduce la parte del organizador', () => {
+  const r = calcularRepartoUSD(1000, 300)
+  assert.equal(r.organizadorCentavos, 750)
   assert.equal(r.netoPlataformaCentavos, -50)
   assert.equal(r.requiereCoberturaPlataforma, true)
 })

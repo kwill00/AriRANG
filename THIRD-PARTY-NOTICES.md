@@ -14,11 +14,11 @@ Las ilustraciones nuevas de navegación e inicio en `src/components/TravelIllust
 | --- | --- | --- |
 | `public/army-mark.svg` | Geometría original añadida al proyecto durante esta implementación; no copia una imagen externa ni usa una fuente | Nuevo icono utilizado por el HTML, manifiesto y notificaciones. No se atribuye afiliación oficial. La licencia general del proyecto sigue sin definirse por su titular. |
 | `src/assets/hero.png` | Autoría, origen y permiso no documentados en el repositorio | No está importado por la interfaz. Conservar original; no reutilizar ni redistribuir hasta acreditar permiso. |
-| `public/app-icons/*.png` | Autoría y permiso no documentados | Sustituidos en las referencias del manifiesto, HTML y service worker. Se conservan los archivos existentes. Vite copia `public` a `dist`: **antes de distribuir el artefacto completo se deben acreditar o excluir estos archivos del empaquetado**. |
+| `public/app-icons/*.png` | Autoría y permiso no documentados | Sustituidos en las referencias del manifiesto, HTML y service worker. Se conservan los archivos existentes y se excluyen del build mediante una lista de recursos aprobados en Vite. |
 | `src/assets/react.svg`, `src/assets/vite.svg`, `public/favicon.svg` | Recursos de plantilla / marcas de React y Vite; falta copia específica de los avisos aplicables a estos archivos | No se usan en la interfaz actual. Conservar originales y revisar las condiciones de marca antes de reutilizarlos. |
-| `public/icons.svg` | Sprite heredado con iconos de terceros; procedencia específica no documentada | Sin referencia en el código revisado. No asumir que la licencia de la biblioteca JavaScript cubre estas imágenes. También se copia desde `public` al compilar. |
+| `public/icons.svg` | Sprite heredado con iconos de terceros; procedencia específica no documentada | Sin referencia en el código revisado y excluido del build, junto con `public/favicon.svg`. No asumir que la licencia de la biblioteca JavaScript cubre estas imágenes. |
 | Avatares de usuarios / Google | No hay prueba de derechos aportada por el usuario | Solo se solicitan tras consentimiento de medios externos y por HTTPS a los hosts permitidos. Usar la imagen no acredita licencia. No se implementó subida de imágenes ni se verifica su titularidad. |
-| Icono de finger heart en `Comunidad.tsx` | SVG ya existente, sin procedencia documentada | Pendiente de acreditar o reemplazar antes de distribución pública. |
+| Corazón de comunidad en `Comunidad.tsx` | Geometría SVG original incorporada el 27 de octubre de 2026 | Reemplaza el dibujo heredado sin procedencia documentada. No usa fuentes ni imágenes externas. |
 
 ## Dependencias
 

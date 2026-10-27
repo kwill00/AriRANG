@@ -57,7 +57,8 @@ test('sign-in controls render in all five languages without loading Google OAuth
   assert.ok(html.includes(translate('Iniciar sesión',language)),language)
   assert.ok(html.includes(translate('Correo electrónico',language)),language)
   assert.ok(html.includes('for="auth-email"'),language)
-  assert.ok(!html.includes('Continuar con Google'))
+  assert.ok(html.includes('type="button"'))
+  assert.ok(!html.includes('accounts.google.com'))
   assert.ok(!html.includes('checked=""'))
  }
 })

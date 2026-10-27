@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "test": "node --test tests/privacy.test.mjs tests/privacy-database.test.mjs tests/reparto-pagos.test.mjs tests/payment-safety.test.mjs",
+    "test": "node --test tests/privacy.test.mjs tests/privacy-database.test.mjs tests/reparto-pagos.test.mjs tests/payment-safety.test.mjs tests/mercadopago-connection.test.mjs tests/mercadopago-checkout.test.mjs tests/mercadopago-lifecycle.test.mjs tests/mercadopago-sandbox.test.mjs",
     "test:e2e": "playwright test",
+    "check:payments": "tsc --noEmit --target es2023 --lib es2023,dom --module esnext --moduleResolution bundler --allowImportingTsExtensions --skipLibCheck supabase/functions/mercadopago-checkout-test/lifecycle.ts supabase/functions/mercadopago-webhook-test/handler.ts supabase/functions/mercadopago-return-test/handler.ts",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",

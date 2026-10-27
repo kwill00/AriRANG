@@ -1,6 +1,14 @@
 // Local dictionaries: no user content is sent to a translation service.
 // Order: English, Korean, Portuguese, Japanese. User content is never translated.
 export const messages: Record<string, readonly [string, string, string, string]> = {
+  'Tu aceptación se guardó. El servidor todavía no habilitó el acceso a esta cuenta.': ['Your acceptance was saved. The server has not enabled access for this account yet.', '동의가 저장되었습니다. 서버에서 아직 이 계정의 이용 권한을 활성화하지 않았습니다.', 'Sua aceitação foi salva. O servidor ainda não habilitou o acesso a esta conta.', '同意を保存しました。このアカウントへのアクセスはサーバーでまだ有効になっていません。'],
+  'Un paso más para encontrarnos': ['One more step before we meet', '만나기 전 한 단계 더', 'Mais um passo para nos encontrarmos', '出会うまで、あと一歩'],
+  'Elegí tu franja de edad y revisá estas dos opciones para continuar.': ['Choose your age range and review these two options to continue.', '연령대를 선택하고 두 항목을 확인해 주세요.', 'Escolha sua faixa etária e revise estas duas opções para continuar.', '年齢層を選び、二つの項目を確認して続けてください。'],
+  'Tu acceso': ['Your access', '내 이용 권한', 'Seu acesso', 'アクセスについて'],
+  'Guardamos tu aceptación en el servidor. Cuando se confirme el acceso, este paso desaparecerá.': ['We save your acceptance on the server. This step will disappear once access is confirmed.', '동의는 서버에 저장됩니다. 이용 권한이 확인되면 이 단계가 사라집니다.', 'Salvamos sua aceitação no servidor. Esta etapa desaparecerá quando o acesso for confirmado.', '同意はサーバーに保存されます。アクセスが確認されると、この画面は表示されなくなります。'],
+  'No pudimos consultar tu acceso. Reintentá en unos instantes; tus opciones siguen aquí.': ['We could not check your access. Try again shortly; your choices are still here.', '이용 권한을 확인하지 못했습니다. 선택은 유지되니 잠시 후 다시 시도해 주세요.', 'Não foi possível consultar seu acesso. Tente novamente em instantes; suas opções continuam aqui.', 'アクセスを確認できませんでした。選択内容は保持されています。しばらくしてから再試行してください。'],
+  'No se pudo guardar tu aceptación. El acceso todavía no está habilitado; podés reintentar o usar el planificador sin cuenta.': ['Your acceptance could not be saved. Access is not enabled yet; retry or use the planner without an account.', '동의를 저장하지 못했습니다. 아직 이용할 수 없습니다. 다시 시도하거나 계정 없이 여행 계획을 이용해 주세요.', 'Não foi possível salvar sua aceitação. O acesso ainda não está habilitado; tente novamente ou use o planejador sem conta.', '同意を保存できませんでした。まだアクセスは有効になっていません。再試行するか、アカウントなしでプランナーを利用できます。'],
+  'Volver a comprobar': ['Check again', '다시 확인', 'Verificar novamente', 'もう一度確認'],
   'Idioma': ['Language', '언어', 'Idioma', '言語'],
   'Privacidad': ['Privacy', '개인정보 보호', 'Privacidade', 'プライバシー'],
   'Términos': ['Terms', '이용약관', 'Termos', '利用規約'],

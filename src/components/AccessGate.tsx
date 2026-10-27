@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { supabase } from '../lib/supabase'
 import { POLICY_VERSION } from '../lib/privacy'
@@ -6,6 +6,7 @@ import { useT } from '../lib/locale'
 import PrivacyAccount from './PrivacyAccount'
 import { signOutPrivately } from '../lib/accountSession'
 import MinorSpace from './MinorSpace'
+import TravelIllustration from './TravelIllustration'
 
 export function AgeNotice({ onGuest }: { onGuest?: () => void }) {
   const t = useT()
@@ -37,44 +38,79 @@ export default function AccessGate({ children, onGuest }: { children: ReactNode;
   const [terms, setTerms] = useState(false)
   const [privacy, setPrivacy] = useState(false)
   const [message, setMessage] = useState('')
+  const busy = useRef(false)
+  const request = useRef(0)
+  function invalidateRequests() { request.current++ }
+  async function refreshAccess() {
+    const current = ++request.current
+    try {
+      const { data, error } = await supabase.rpc('privacy_access_mode')
+      if (current !== request.current) return
+      if (error || !['adult', 'minor_limited', 'restricted'].includes(data)) throw new Error('Access unavailable')
+      setAllowed(data === 'adult'); setMinorAllowed(data === 'minor_limited'); setMessage('')
+      return data as string
+    } catch {
+      if (current !== request.current) return
+      setAllowed(false); setMinorAllowed(false)
+      setMessage('No pudimos consultar tu acceso. Reintentá en unos instantes; tus opciones siguen aquí.')
+    } finally {
+      if (current === request.current) setLoading(false)
+    }
+  }
   useEffect(() => {
-    let active = true
-    const check = () => void Promise.all([supabase.rpc('privacy_access_allowed'), supabase.rpc('privacy_access_mode')]).then(([{ data, error }, mode]) => {
-      if (active) { setAllowed(!error && data === true); setMinorAllowed(!mode.error && mode.data === 'minor_limited'); setLoading(false); setMessage(error ? 'No se pudo verificar el acceso. La configuración del servidor puede estar pendiente.' : '') }
-    })
+    const check = () => { if (!busy.current) void refreshAccess() }
     check()
     const timer = window.setInterval(check, 60000)
-    return () => { active = false; window.clearInterval(timer) }
+    window.addEventListener('focus', check)
+    return () => { invalidateRequests(); window.clearInterval(timer); window.removeEventListener('focus', check) }
   }, [])
   async function submit() {
-    if (!['adult','teen'].includes(age) || !terms || !privacy || loading) return
-    setLoading(true)
-    const { error } = await supabase.rpc(age === 'teen' ? 'privacy_accept_teen' : 'privacy_accept_adult', { p_version: POLICY_VERSION, p_terms: terms, p_privacy: privacy })
-    const [{ data, error: accessError }, mode] = await Promise.all([supabase.rpc('privacy_access_allowed'), supabase.rpc('privacy_access_mode')])
-    setAllowed(!error && !accessError && data === true)
-    setMinorAllowed(!error && !mode.error && mode.data === 'minor_limited')
-    setMessage(error?.message === 'Age classification review required' ? 'Esta cuenta necesita revisar su franja de edad antes de cambiar el acceso.' : error || accessError || (data !== true && mode.data !== 'minor_limited') ? 'No se pudo verificar el acceso. La configuración del servidor puede estar pendiente.' : '')
-    setLoading(false)
+    if (!['adult','teen'].includes(age) || !terms || !privacy || loading || busy.current) return
+    busy.current = true; request.current++; setLoading(true); setMessage('')
+    try {
+      const { error } = await supabase.rpc(age === 'teen' ? 'privacy_accept_teen' : 'privacy_accept_adult', { p_version: POLICY_VERSION, p_terms: terms, p_privacy: privacy })
+      if (error) setMessage(error.message === 'Age classification review required'
+        ? 'Esta cuenta necesita revisar su franja de edad antes de cambiar el acceso.'
+        : 'No se pudo guardar tu aceptación. El acceso todavía no está habilitado; podés reintentar o usar el planificador sin cuenta.')
+      else if (await refreshAccess() === 'restricted') setMessage('Tu aceptación se guardó. El servidor todavía no habilitó el acceso a esta cuenta.')
+    } catch { setMessage('No pudimos consultar tu acceso. Reintentá en unos instantes; tus opciones siguen aquí.') }
+    finally { busy.current = false; setLoading(false) }
   }
   async function chooseAge(value: string) {
+    request.current++
     setAge(value)
     setTerms(false); setPrivacy(false)
     if (value === 'under14') {
       // Only an already authenticated account is involved; collect no date or parent contact.
-      const { error } = await supabase.rpc('privacy_restrict_minor')
-      if (error) setMessage('No se pudo verificar el acceso. La configuración del servidor puede estar pendiente.')
+      busy.current = true; setLoading(true)
+      try {
+        const { error } = await supabase.rpc('privacy_restrict_minor')
+        if (error) throw new Error('Restriction unavailable')
+        setMessage('')
+      } catch { setMessage('No pudimos consultar tu acceso. Reintentá en unos instantes; tus opciones siguen aquí.') }
+      finally { busy.current = false; setLoading(false) }
     }
   }
   if (allowed) return children
   if (minorAllowed) return <MinorSpace />
-  return <section className="access-gate"><h1>{t('Revisar acceso')}</h1>
+  return <section className="access-gate" aria-labelledby="access-title" aria-busy={loading}>
+    <header className="access-welcome"><div className="access-art"><TravelIllustration kind="trip" /></div><div>
+      <p className="access-eyebrow">ARMY Travel</p><h1 id="access-title">{t('Un paso más para encontrarnos')}</h1>
+      <p>{t('Elegí tu franja de edad y revisá estas dos opciones para continuar.')}</p>
+    </div></header>
+    <form onSubmit={e => { e.preventDefault(); void submit() }}>
+    <fieldset className="access-fields" disabled={loading}><legend>{t('Tu acceso')}</legend>
     <AgeChoice value={age} onChange={value => void chooseAge(value)} />
     {age === 'under14' ? <AgeNotice onGuest={onGuest} /> : <>{age === 'teen' && <TeenNotice />}<PolicyChoices terms={terms} privacy={privacy} onTerms={setTerms} onPrivacy={setPrivacy} /></>}
-    {onGuest && age !== 'under14' && <button type="button" onClick={onGuest}>{t('Entrar como visitante')}</button>}
-    <button type="button" disabled={loading || !['adult','teen'].includes(age) || !terms || !privacy} onClick={() => void submit()}>{t('Continuar')}</button>
-    <button type="button" onClick={() => void signOutPrivately()}>{t('🚪 Cerrar sesión')}</button>
+    </fieldset>
+    <p className="access-hint">{t('Guardamos tu aceptación en el servidor. Cuando se confirme el acceso, este paso desaparecerá.')}</p>
+    <div className="access-actions">
+    <button type="submit" disabled={loading || !['adult','teen'].includes(age) || !terms || !privacy}>{t('Continuar')}</button>
+    {onGuest && age !== 'under14' && <button className="access-secondary" type="button" onClick={onGuest}>{t('Entrar como visitante')}</button>}
+    <button className="access-secondary" type="button" onClick={() => void signOutPrivately()}>{t('🚪 Cerrar sesión')}</button>
+    </div></form>
     {loading && <p role="status">{t('Procesando...')}</p>}
-    {message && <p role="status">{t(message)}</p>}
-    <PrivacyAccount />
+    {message && <div className="access-feedback"><p role="status">{t(message)}</p><button type="button" disabled={loading} onClick={() => { setLoading(true); void refreshAccess() }}>{t('Volver a comprobar')}</button></div>}
+    <details className="access-account"><summary>{t('Privacidad y cuenta')}</summary><PrivacyAccount /></details>
   </section>
 }

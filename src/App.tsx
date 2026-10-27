@@ -119,7 +119,7 @@ const [menuAbierto, setMenuAbierto] = useState(false)
 const [proyectoComunidad, setProyectoComunidad] = useState<string | null>(null)
 const [paginaSolicitada, setPagina] = useState<
   'inicio' | 'comunidad' | 'social' | 'viajes' | 'crear' | 'vuelos' | 'proyectos' | 'perfil' | 'admin'
->(new URLSearchParams(window.location.search).has('comunidad') ? 'comunidad' : 'inicio')
+>(new URLSearchParams(window.location.search).has('checkout_test') ? 'admin' : new URLSearchParams(window.location.search).has('comunidad') ? 'comunidad' : 'inicio')
   const [entrada, setEntrada] = useState(250)
   const [transporte, setTransporte] = useState(350)
   const [hotel, setHotel] = useState(200)

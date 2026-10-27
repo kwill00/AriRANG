@@ -1,4 +1,20 @@
-# React + TypeScript + Vite
+# ARMY Travel · AriRANG
+
+Aplicación existente de planificación de viajes y comunidad. React, TypeScript,
+Vite y Supabase. Este repositorio conserva los avances de interfaz, privacidad,
+acceso adolescente y pruebas de Mercado Pago.
+
+- Instalar dependencias: `npm ci`.
+- Verificar: `npm test`, `npm run test:e2e`, `npm run lint`, `npm run check:payments`, `npm run build`.
+- [Configurar el entorno aislado de Mercado Pago](docs/MERCADOPAGO-SANDBOX.md).
+- [Estado del servidor y configuración de acceso](docs/CONFIGURAR-ACCESO-SERVIDOR.md).
+
+Los cobros reales no están habilitados. El checkout nuevo necesita el proyecto
+Supabase de pruebas; no debe desplegarse en producción. Las credenciales privadas
+permanecen en secretos del servidor y los archivos de entorno se excluyen de Git.
+Subir esta rama no publica la aplicación ni configura despliegues automáticos.
+
+## Notas originales de la plantilla: React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
