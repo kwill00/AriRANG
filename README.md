@@ -7,6 +7,7 @@ acceso adolescente y pruebas de Mercado Pago.
 - Instalar dependencias: `npm ci`.
 - Verificar: `npm test`, `npm run test:e2e`, `npm run lint`, `npm run check:payments`, `npm run build`.
 - [Configurar el entorno aislado de Mercado Pago](docs/MERCADOPAGO-SANDBOX.md).
+- [Proyecto de pruebas creado y pasos para empezar](docs/ENTORNO-PRUEBAS-SERVIDOR.md).
 - [Estado del servidor y configuración de acceso](docs/CONFIGURAR-ACCESO-SERVIDOR.md).
 
 Los cobros reales no están habilitados. El checkout nuevo necesita el proyecto

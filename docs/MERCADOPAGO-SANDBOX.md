@@ -1,7 +1,9 @@
 # Validar Mercado Pago sin tocar producción
 
-Trabajo local del 27 de octubre de 2026. **No se aplicaron estas migraciones ni se
-desplegaron estas funciones en ningún servidor. No se publicó la web.**
+Trabajo iniciado localmente el 27 de octubre de 2026. Posteriormente se creó y
+configuró el proyecto aislado `jdkjqsxcycpfowydciaq`; ver el
+[estado actual del servidor de pruebas](ENTORNO-PRUEBAS-SERVIDOR.md).
+**No se modificó Supabase de producción ni se publicó la web.**
 La instancia `buhgdsnxmmoqshvoyyth` está bloqueada explícitamente por el nuevo
 código de pagos y por los scripts de preparación/arranque.
 
@@ -125,7 +127,8 @@ prueba hospedada. No compartas capturas con claves ni pegues credenciales en el 
 
 ## 4. Desplegar SOLO en el proyecto nuevo, cuando lo hayamos conectado
 
-Estos comandos son pasos futuros: no se ejecutaron en esta entrega. Sustituí la
+Estos comandos documentan el despliegue de pruebas (ya realizado en
+`jdkjqsxcycpfowydciaq`, con `--use-api`). Para otro entorno sustituí la
 referencia por la nueva; **nunca** por `buhgdsnxmmoqshvoyyth`. El proyecto no necesita
 vincularse con `supabase link`: cada comando indica su destino explícitamente.
 
@@ -188,9 +191,9 @@ el SQL generado y los archivos de secretos locales quedan ignorados por Git.
 Pruebas locales con identidades/cuentas sintéticas y red del proveedor simulada;
 PostgreSQL real en PGlite para persistencia y permisos. También se probó el esquema
 vacío de sandbox más todas las migraciones. No son compras ni reembolsos efectuados
-en Mercado Pago. Falta crear/conectar el proyecto aislado, configurar sus secretos,
-desplegar allí y ejecutar el circuito anterior con cuentas de prueba reales.
-No se consultaron secretos ni se modificó Supabase de producción o Netlify.
+en Mercado Pago. El proyecto aislado ya está creado y desplegado: faltan las dos
+credenciales de prueba y el operador autenticado para ejecutar el circuito anterior.
+No se consultaron valores de secretos ni se modificó Supabase de producción o Netlify.
 
 Referencias oficiales:
 
