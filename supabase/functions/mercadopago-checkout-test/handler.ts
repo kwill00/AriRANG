@@ -47,7 +47,7 @@ export function createCheckoutHandler(config: Config, providerFetch: typeof fetc
         const back = `${config.origin}/?checkout_test=return`
         const preferenceResponse = await api('https://api.mercadopago.com/checkout/preferences', {
           method: 'POST', headers: mpHeaders, body: JSON.stringify({
-            items: [{ id: 'army-checkout-test-ars100', title: 'ARMY Travel - PRUEBA sin aporte real', currency_id: 'ARS', quantity: 1, unit_price: AMOUNT }],
+            items: [{ id: 'army-checkout-test-ars100', title: 'ARMY World - PRUEBA sin aporte real', currency_id: 'ARS', quantity: 1, unit_price: AMOUNT }],
             external_reference: reference, back_urls: { success: back, failure: back, pending: back },
             expires: true, expiration_date_from: new Date().toISOString(), expiration_date_to: new Date(expires).toISOString(),
           }),

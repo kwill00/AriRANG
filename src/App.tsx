@@ -395,10 +395,9 @@ const pagina = paginaSolicitada === 'admin' && !verificandoAdmin && !esAdministr
 
   return (
     <main className="app">
-<header className="brand-header"><div className="brand-lockup"><span className="brand-symbol" aria-hidden="true">🫰</span><div><strong className="brand-name">ARMY Travel</strong><span className="brand-caption">{t("Conectá. Viajá. Vivilo.")}</span></div></div><span className="brand-note">{t("Un mismo amor, miles de destinos")}</span></header>
 
 <div className="app-navigation">
-<div className="mobile-nav-header"><span>💜 ARMY Travel</span><button type="button" aria-expanded={menuAbierto} aria-controls="app-menu" onClick={() => setMenuAbierto(v => !v)}>{menuAbierto ? t("Cerrar menú") : t("Abrir menú")}</button></div>
+<div className="mobile-nav-header"><span>💜 ARMY World</span><button type="button" aria-expanded={menuAbierto} aria-controls="app-menu" onClick={() => setMenuAbierto(v => !v)}>{menuAbierto ? t("Cerrar menú") : t("Abrir menú")}</button></div>
 <nav id="app-menu" className={`app-nav nav-gallery ${menuAbierto ? 'is-open' : ''}`} aria-label={t("Navegación principal")} onClick={e => { if (e.target instanceof Element && e.target.closest('button')) { setMenuAbierto(false); window.scrollTo({ top: 0, behavior: 'auto' }) } }}>
 <NavigationTile label={t('🏠 Inicio')} art="home" active={pagina === 'inicio'} onClick={() => setPagina('inicio')} />
 <NavigationTile label={t('✈️ Mis viajes')} art="trip" active={pagina === 'viajes'} onClick={() => setPagina('viajes')} />
@@ -700,7 +699,7 @@ const pagina = paginaSolicitada === 'admin' && !verificandoAdmin && !esAdministr
 
 
       <footer>
-        ARMY Travel · Made for fans 💜
+        ARMY World · Made for fans 💜
       </footer>
     </main>
   )

@@ -36,7 +36,7 @@ export default function AvisosSociales({ onVerComunidad }: { onVerComunidad: () 
     try {
       if (!permits('push')) throw new Error('Primero permití push desde Configurar privacidad. Podés rechazarlo y seguir usando la app.')
       const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
-      if (ios && !window.matchMedia('(display-mode: standalone)').matches && !(navigator as Navigator & { standalone?: boolean }).standalone) throw new Error('En iPhone o iPad, agregá ARMY Travel a Inicio desde Compartir en Safari. Abrí su ícono y volvé a activar los avisos.')
+      if (ios && !window.matchMedia('(display-mode: standalone)').matches && !(navigator as Navigator & { standalone?: boolean }).standalone) throw new Error('En iPhone o iPad, agregá ARMY World a Inicio desde Compartir en Safari. Abrí su ícono y volvé a activar los avisos.')
       if (!window.isSecureContext) throw new Error('Las notificaciones requieren un sitio HTTPS.')
       if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) throw new Error('Este navegador no permite notificaciones push.')
       const clave = import.meta.env.VITE_WEB_PUSH_PUBLIC_KEY

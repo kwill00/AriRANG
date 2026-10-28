@@ -111,7 +111,7 @@ export default function Login({ onGuest }: { onGuest?: () => void }) {
   return (
     <section className="auth-container">
       <div className="auth-travel-art"><TravelIllustration kind="flight" /></div>
-      <h1>💜 ARMY Travel</h1>
+      <h1>💜 ARMY World</h1>
       <p>{t("Tu próxima aventura comienza aquí")}</p>
       {onGuest && <button type="button" className="auth-guest-card" aria-label={t('Entrar como visitante')} onClick={onGuest}><span className="auth-guest-art"><TravelIllustration kind="trip" /></span><span><strong>{t('Entrar como visitante')}</strong><small>{t('Usar el planificador sin cuenta')}</small></span><span aria-hidden="true">↗</span></button>}
 

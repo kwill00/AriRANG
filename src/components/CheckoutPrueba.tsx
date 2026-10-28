@@ -44,7 +44,7 @@ export default function CheckoutPrueba() {
   return <section className="perfil-card" aria-labelledby="checkout-test-title">
     <h3 id="checkout-test-title">Checkout de prueba · Mercado Pago</h3>
     <p>Solo administración. Importe ficticio: <strong>ARS 100</strong>. Usá únicamente una cuenta compradora y tarjetas de prueba de Mercado Pago.</p>
-    <p>Política acordada: organizadora 75%, ARMY Travel 25%; las comisiones se absorben dentro de la parte de ARMY Travel. Esta prueba verifica el checkout de una cuenta vendedora ficticia: <strong>todavía no aplica el split</strong> ni crea aportes o suscripciones reales.</p>
+    <p>Política acordada: organizadora 75%, ARMY World 25%; las comisiones se absorben dentro de la parte de ARMY World. Esta prueba verifica el checkout de una cuenta vendedora ficticia: <strong>todavía no aplica el split</strong> ni crea aportes o suscripciones reales.</p>
     <button type="button" disabled={busy} onClick={() => void run('create')}>{busy ? 'Procesando…' : 'Preparar checkout de prueba · ARS 100'}</button>
     {checkoutUrl && <p><a href={checkoutUrl}>Continuar en Mercado Pago · Solo prueba</a></p>}
     {returning && <p>Volviste de Mercado Pago. La dirección de retorno no demuestra que el pago esté aprobado.</p>}

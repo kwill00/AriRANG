@@ -1,4 +1,4 @@
-# ARMY Travel · AriRANG
+# ARMY World · AriRANG
 
 Aplicación existente de planificación de viajes y comunidad. React, TypeScript,
 Vite y Supabase. Este repositorio conserva los avances de interfaz, privacidad,

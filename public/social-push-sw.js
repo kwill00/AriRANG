@@ -9,7 +9,7 @@ self.addEventListener('fetch', event => {
 })
 self.addEventListener('push', event => {
   const payload = event.data?.json() ?? {}
-  event.waitUntil(self.registration.showNotification('ARMY Travel', {
+  event.waitUntil(self.registration.showNotification('ARMY World', {
     icon: '/army-mark.svg',
     badge: '/army-mark.svg',
     body: 'Una cuenta que seguís compartió una nueva publicación.',

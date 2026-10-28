@@ -101,7 +101,7 @@ export default function PanelAdmin() {
 
   return (
     <section className="perfil-page">
-      <h2>{t("🛡️ Administración de ARMY Travel")}</h2>
+      <h2>{t("🛡️ Administración de ARMY World")}</h2>
       <Moderacion />
       <ModeracionPrevia />
       <CheckoutPrueba />

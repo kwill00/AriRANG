@@ -95,7 +95,7 @@ export default function AccessGate({ children, onGuest }: { children: ReactNode;
   if (minorAllowed) return <MinorSpace />
   return <section className="access-gate" aria-labelledby="access-title" aria-busy={loading}>
     <header className="access-welcome"><div className="access-art"><TravelIllustration kind="trip" /></div><div>
-      <p className="access-eyebrow">ARMY Travel</p><h1 id="access-title">{t('Un paso más para encontrarnos')}</h1>
+      <p className="access-eyebrow">ARMY World</p><h1 id="access-title">{t('Un paso más para encontrarnos')}</h1>
       <p>{t('Elegí tu franja de edad y revisá estas dos opciones para continuar.')}</p>
     </div></header>
     <form onSubmit={e => { e.preventDefault(); void submit() }}>

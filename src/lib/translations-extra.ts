@@ -163,7 +163,7 @@ export const extraMessages: Record<string, readonly [string, string, string, str
  '💜 Cargando tu perfil...': ['💜 Loading your profile…', '💜 내 프로필 로딩 중…', '💜 Carregando seu perfil…', '💜 プロフィール読込中…'],
  '💜 Consultando solicitud...': ['💜 Checking request…', '💜 신청 확인 중…', '💜 Consultando solicitação…', '💜 申請確認中…'],
  '💜 Convertite en organizadora': ['💜 Become an organizer', '💜 주최자가 되세요', '💜 Torne-se organizadora', '💜 主催者になる'],
- '💜 Instalar ARMY Travel': ['💜 Install ARMY Travel', '💜 ARMY Travel 설치', '💜 Instalar ARMY Travel', '💜 ARMY Travelをインストール'],
+ '💜 Instalar ARMY World': ['💜 Install ARMY World', '💜 ARMY World 설치', '💜 Instalar ARMY World', '💜 ARMY Worldをインストール'],
  '💜 Mis viajes guardados': ['💜 My saved trips', '💜 저장된 내 여행', '💜 Minhas viagens salvas', '💜 保存した旅行'],
  '💰 Mi plan de ahorro': ['💰 My savings plan', '💰 내 저축 계획', '💰 Meu plano de economia', '💰 貯蓄計画'],
  '💰 Total ahorrado': ['💰 Total saved', '💰 총 저축액', '💰 Total poupado', '💰 貯蓄合計'],
@@ -172,7 +172,7 @@ export const extraMessages: Record<string, readonly [string, string, string, str
  '🔎 Buscar vuelos': ['🔎 Search flights', '🔎 항공편 검색', '🔎 Buscar voos', '🔎 航空便を検索'],
  '🔔 Avisos (': ['🔔 Notices (', '🔔 알림 (', '🔔 Avisos (', '🔔 通知 ('],
  '🗑️ Eliminar': ['🗑️ Delete', '🗑️ 삭제', '🗑️ Excluir', '🗑️ 削除'],
- '🛡️ Administración de ARMY Travel': ['🛡️ ARMY Travel administration', '🛡️ ARMY Travel 관리', '🛡️ Administração ARMY Travel', '🛡️ ARMY Travel管理'],
+ '🛡️ Administración de ARMY World': ['🛡️ ARMY World administration', '🛡️ ARMY World 관리', '🛡️ Administração ARMY World', '🛡️ ARMY World管理'],
  'abrí el menú de Chrome y elegí «Instalar aplicación» o «Agregar a la pantalla principal».': ['Open the Chrome menu and choose Install app or Add to Home screen.', 'Chrome 메뉴에서 앱 설치 또는 홈 화면에 추가를 선택하세요.', 'Abra o menu do Chrome e escolha Instalar app ou Adicionar à tela inicial.', 'Chromeのメニューからアプリをインストールまたはホーム画面に追加を選択してください。'],
- 'abrí esta página en Safari, tocá Compartir y «Agregar a inicio». Luego abrí ARMY Travel desde su ícono.': ['Open this page in Safari, tap Share and Add to Home Screen. Then open ARMY Travel from its icon.', 'Safari에서 이 페이지를 열고 공유, 홈 화면에 추가를 누르세요. 그 후 아이콘으로 실행하세요.', 'Abra no Safari, toque em Compartilhar e Adicionar à Tela de Início. Depois abra pelo ícone.', 'Safariで開き、共有からホーム画面に追加を選び、そのアイコンから開いてください。'],
+ 'abrí esta página en Safari, tocá Compartir y «Agregar a inicio». Luego abrí ARMY World desde su ícono.': ['Open this page in Safari, tap Share and Add to Home Screen. Then open ARMY World from its icon.', 'Safari에서 이 페이지를 열고 공유, 홈 화면에 추가를 누르세요. 그 후 아이콘으로 실행하세요.', 'Abra no Safari, toque em Compartilhar e Adicionar à Tela de Início. Depois abra pelo ícone.', 'Safariで開き、共有からホーム画面に追加を選び、そのアイコンから開いてください。'],
 }

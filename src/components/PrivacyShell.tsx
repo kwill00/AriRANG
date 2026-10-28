@@ -9,6 +9,12 @@ import { revokePush } from '../lib/pushPrivacy'
 import { ConsentContext } from '../lib/consentContext'
 import '../privacy.css'
 import ConductGuide from './ConductGuide'
+import InstalarApp from './InstalarApp'
+import '../world.css'
+
+function PrivacySymbol() {
+  return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 3 4.5 6v6c0 4.5 4 7.5 7.5 9 3.5-1.5 7.5-4.5 7.5-9V6L12 3Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/><path d="m8.5 12 2.5 2.5 4.5-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+}
 
 function initialLanguage(): Language {
   try { const value = localStorage.getItem('army-language'); if (value && Object.hasOwn(languages, value)) return value as Language } catch { /* Use Spanish without storage. */ }
@@ -50,15 +56,19 @@ export default function PrivacyShell({ children }: { children: ReactNode }) {
   }
   return <LocaleContext.Provider value={language}><ConsentContext.Provider value={consent}>
     <a className="skip-link" href="#army-content">{t('Saltar al contenido')}</a>
-    <header className="privacy-toolbar"><label htmlFor="army-language">{t('Idioma')}</label><select id="army-language" value={language} onChange={event => setLanguage(event.target.value as Language)}>{Object.entries(languages).map(([code, name]) => <option key={code} value={code} lang={code}>{name}</option>)}</select></header>
+    <header className="privacy-toolbar world-header">
+      <div className="world-brand"><img src="/army-mark.svg" width="42" height="42" alt=""/><div><strong>ARMY World</strong><span>{t('Conectá. Viajá. Vivilo.')}</span></div></div>
+      <div className="world-header-actions"><InstalarApp/><div className="world-language"><span aria-hidden="true">◎</span><label htmlFor="army-language">{t('Idioma')}</label><select id="army-language" value={language} onChange={event => setLanguage(event.target.value as Language)}>{Object.entries(languages).map(([code, name]) => <option key={code} value={code} lang={code}>{name}</option>)}</select></div></div>
+    </header>
     <div id="army-content" tabIndex={-1}>{children}</div>
-    <footer className="privacy-links"><nav aria-label={t('Privacidad')}>
+    <footer className="privacy-links world-footer"><div className="world-footer-heading"><span className="world-small-symbol"><PrivacySymbol/></span><div><strong>ARMY World</strong><span>{t('Un mismo amor, miles de destinos')}</span></div></div><nav aria-label={t('Privacidad')}>
       {(Object.keys(policies.es) as Policy[]).map(name => <button type="button" key={name} onClick={() => setPolicy(name)}>{t(name)}</button>)}
       <button type="button" onClick={() => setSettings(true)}>{t('Configurar privacidad')}</button>
+      <button className="privacy-revoke" type="button" disabled={busy} onClick={() => void choose(false, false)}>{t('Revocar opcionales')}</button>
     </nav></footer>
     <ConductGuide />
     {(!consent || settings) && <section className="privacy-banner" aria-labelledby="privacy-title">
-      <h2 id="privacy-title">{t('Preferencias de privacidad')}</h2>
+      <div className="world-consent-heading"><span className="world-consent-symbol"><PrivacySymbol/></span><h2 id="privacy-title">{t('Preferencias de privacidad')}</h2></div>
       <p>{t('Usamos almacenamiento necesario para sesión, idioma y estas preferencias. No hay analítica ni publicidad. Los avatares externos y el push están bloqueados hasta que elijas permitirlos.')}</p>
       {settings && <fieldset><legend>{t('Configurar')}</legend>
         <label><input type="checkbox" checked={externalMedia} onChange={e => setExternalMedia(e.target.checked)} />{t('Avatares externos (opcional)')}</label>
@@ -66,14 +76,13 @@ export default function PrivacyShell({ children }: { children: ReactNode }) {
         <p>{t('Permitir push aquí no concede permiso al navegador ni activa envíos. Se solicita aparte desde Avisos.')}</p>
       </fieldset>}
       <div className="privacy-actions">
-        <button type="button" disabled={busy} onClick={() => void choose(true, true)}>{t('Aceptar opcionales')}</button>
-        <button type="button" disabled={busy} onClick={() => void choose(false, false)}>{t('Rechazar opcionales')}</button>
+        <button className="consent-choice" type="button" disabled={busy} onClick={() => void choose(true, true)}>{t('Aceptar opcionales')}</button>
+        <button className="consent-choice" type="button" disabled={busy} onClick={() => void choose(false, false)}>{t('Rechazar opcionales')}</button>
         <button type="button" onClick={() => setSettings(true)}>{t('Configurar')}</button>
         {settings && <button type="button" disabled={busy} onClick={() => void choose(externalMedia, push)}>{t('Guardar preferencias')}</button>}
         {consent && <button type="button" onClick={() => setSettings(false)}>{t('Cerrar')}</button>}
       </div>
     </section>}
-    <div className="privacy-actions"><button type="button" disabled={busy} onClick={() => void choose(false, false)}>{t('Revocar opcionales')}</button></div>
     {error && <p className="privacy-error" role="alert">{t(error)}</p>}
     <dialog ref={dialog} className="policy-dialog" aria-labelledby="policy-heading" onCancel={() => setPolicy(null)} onClose={() => setPolicy(null)}>
       <h2 id="policy-heading">{policy && t(policy)}</h2>

@@ -19,7 +19,7 @@ export const youthMessages: Record<string, readonly [string, string, string, str
  'Reporte recibido para revisión.': ['Report received for review.', '검토를 위해 신고를 받았습니다.', 'Denúncia recebida para análise.', '確認のため通報を受け付けました。'],
  'Entrar como visitante': ['Enter as guest', '방문자로 입장', 'Entrar como visitante', 'ゲストとして入る'],
  'Usar el planificador sin cuenta': ['Use the planner without an account', '계정 없이 계획 도구 사용', 'Usar o planejador sem conta', 'アカウントなしで計画する'],
- 'ARMY Travel para visitantes': ['ARMY Travel for guests', '방문자용 ARMY Travel', 'ARMY Travel para visitantes', 'ゲスト向けARMY Travel'],
+ 'ARMY World para visitantes': ['ARMY World for guests', '방문자용 ARMY World', 'ARMY World para visitantes', 'ゲスト向けARMY World'],
  'Podés usar este planificador sin crear una cuenta, también si sos menor.': ['You can use this planner without an account, including if you are under 18.', '미성년자도 계정 없이 이 계획 도구를 사용할 수 있습니다.', 'Você pode usar este planejador sem conta, inclusive sendo menor.', '未成年の方もアカウントなしで利用できます。'],
  'Los importes quedan solo en la memoria de esta página. No se envían al servidor ni se guardan en el navegador. Se borran al salir o recargar.': ['Amounts stay only in this page’s memory. They are not sent to a server or saved in browser storage. Leaving or reloading clears them.', '금액은 이 페이지의 메모리에만 남습니다. 서버에 보내거나 브라우저 저장소에 보관하지 않으며, 나가거나 새로고침하면 삭제됩니다.', 'Os valores ficam só na memória desta página. Não são enviados ao servidor nem salvos no navegador. Sair ou recarregar apaga tudo.', '金額はこのページのメモリー内だけに保持されます。サーバーへ送信せず、ブラウザーにも保存しません。終了や再読み込みで消去します。'],
  'Mi plan de ahorro de prueba': ['My practice savings plan', '연습용 저축 계획', 'Meu plano de economia de teste', 'お試し貯蓄計画'],

@@ -67,7 +67,7 @@ export function createLifecycleHandler(config: Config, transport: typeof fetch =
          notificationUrl = notification.href
        }
        const preference = await provider.api('/checkout/preferences', 'POST', {
-         items: [{ id: 'army-checkout-test-ars100', title: 'ARMY Travel - PRUEBA sin aporte real', currency_id: 'ARS', quantity: 1, unit_price: 100 }],
+         items: [{ id: 'army-checkout-test-ars100', title: 'ARMY World - PRUEBA sin aporte real', currency_id: 'ARS', quantity: 1, unit_price: 100 }],
          external_reference: `armytest_${order.id}`, back_urls: { success: back, failure: back, pending: back },
          ...(notificationUrl ? { notification_url: notificationUrl } : {}),
          expires: true, expiration_date_from: new Date().toISOString(), expiration_date_to: new Date(Date.now()+3600000).toISOString(),

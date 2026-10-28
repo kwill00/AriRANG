@@ -17,7 +17,7 @@ export default function GuestPlanner({ onExit, embedded = false }: { onExit: () 
   const money = (value: number) => new Intl.NumberFormat(language, { style: 'currency', currency: 'USD' }).format(value)
   const Container = embedded ? 'section' : 'main'
   return <Container className="guest-planner" aria-labelledby="guest-title">
-    {embedded ? <h2 id="guest-title">{t('Planificador privado')}</h2> : <h1 id="guest-title">{t('ARMY Travel para visitantes')}</h1>}
+    {embedded ? <h2 id="guest-title">{t('Planificador privado')}</h2> : <h1 id="guest-title">{t('ARMY World para visitantes')}</h1>}
     {!embedded && <p>{t('Podés usar este planificador sin crear una cuenta, también si sos menor.')}</p>}
     <p className="sharing-notice">{t('Los importes quedan solo en la memoria de esta página. No se envían al servidor ni se guardan en el navegador. Se borran al salir o recargar.')}</p>
     <section aria-labelledby="guest-budget-title">

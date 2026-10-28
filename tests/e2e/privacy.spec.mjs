@@ -71,6 +71,29 @@ test('Google login returns to the current local origin without reaching Google',
  await expect.poll(()=>redirect).toBe('http://127.0.0.1:5187')
 })
 
+test('ARMY World branding, compact controls and equal consent choices survive reload on mobile',async({page})=>{
+ await fixtureNetwork(page);await page.goto('/')
+ await expect(page).toHaveTitle(/ARMY World/)
+ await expect(page.locator('.world-brand')).toContainText('ARMY World')
+ await expect(page.locator('body')).not.toContainText('ARMY Travel')
+ const manifest=await page.evaluate(async()=>await (await fetch('/manifest.webmanifest')).json())
+ expect(manifest.name).toBe('ARMY World')
+ const buttons=page.locator('.privacy-banner .consent-choice')
+ const styles=await buttons.evaluateAll(nodes=>nodes.map(node=>{const style=getComputedStyle(node);return [style.backgroundColor,style.color,style.minWidth,style.minHeight]}))
+ expect(styles).toHaveLength(2);expect(styles[0]).toEqual(styles[1])
+ await page.screenshot({path:test.info().outputPath('world-desktop.png'),fullPage:true})
+ await page.setViewportSize({width:320,height:900})
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true)
+ await page.screenshot({path:test.info().outputPath('world-mobile.png'),fullPage:true})
+ await page.getByRole('button',{name:'Instalar ARMY World',exact:true}).click()
+ await expect(page.locator('#world-install-help')).toBeVisible()
+ await page.getByRole('button',{name:'Instalar ARMY World',exact:true}).click()
+ await expect(page.locator('#world-install-help')).toHaveCount(0)
+ await page.getByRole('button',{name:'Rechazar opcionales',exact:true}).click()
+ await page.reload();await expect(page.locator('.privacy-banner')).toHaveCount(0)
+ await expect(page.locator('.world-brand')).toContainText('ARMY World')
+})
+
 test('cookies start denied; reject persists; accepting and revoking are independent of login',async({page})=>{
  const calls=await fixtureNetwork(page);await page.goto('/')
  await page.getByRole('button',{name:'Configurar',exact:true}).click()
@@ -222,7 +245,7 @@ test('a minor can enter the visitor planner without an account or new external r
  await page.getByRole('combobox',{name:'Edad',exact:true}).selectOption('under14')
  await page.getByRole('button',{name:'Usar el planificador sin cuenta',exact:true}).click()
  const initialCalls=calls.length
- await expect(page.getByRole('heading',{name:'ARMY Travel para visitantes'})).toBeVisible()
+ await expect(page.getByRole('heading',{name:'ARMY World para visitantes'})).toBeVisible()
  await page.getByLabel('Objetivo de ahorro (USD)',{exact:true}).fill('1000')
  await page.getByLabel('Ahorro actual (USD)',{exact:true}).fill('200')
  await page.getByLabel('Aporte semanal estimado (USD)',{exact:true}).fill('100')
