@@ -4,6 +4,11 @@
 inicio, acceso, instalación, títulos, políticas, traducciones, avisos y manifiesto.
 El monograma SVG original pasa de AT a AW, conservando su ruta y sin fuentes externas.
 
+Actualización posterior: el ícono AW se reemplaza por una ilustración SVG original
+del gesto coreano de corazón con los dedos: mano en tonos cálidos, pequeño corazón
+rosado y fondo lila. Se conserva `public/army-mark.svg`, de modo que el encabezado,
+favicon, manifiesto e indicaciones de notificación comparten el nuevo dibujo.
+
 El encabezado reúne la marca, la instalación y el selector de idioma. Se retira
 la cabecera de marca duplicada dentro de la aplicación autenticada. Se rediseñan
 tarjetas de navegación, pie, manual de convivencia y panel de privacidad con
