@@ -55,3 +55,26 @@
 @media (max-width: 800px) { .privacy-links.world-footer { flex-direction: column; gap: .75rem; } .world-footer nav { justify-content: flex-start; max-width: none; } .world-footer-heading div > span { max-width: none; } }
 @media (max-width: 600px) { .privacy-toolbar.world-header { flex-wrap: wrap; margin-bottom: .75rem; padding: 1rem 0; } .world-header-actions { justify-content: space-between; flex-wrap: wrap; width: 100%; gap: .5rem; } .world-header .instalar-app > button { padding: .6rem .8rem; font-size: .75rem; } .world-language { gap: .25rem; } .world-language label { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); } .privacy-links.world-footer { padding: 1rem; } .world-footer nav button { padding: .5rem .65rem; } .privacy-banner .privacy-actions > .consent-choice { flex: 1 1 100%; width: 100%; } .privacy-banner .privacy-actions > button:not(.consent-choice) { flex: 1 1 auto; } .app .app-nav.nav-gallery .nav-tile { min-height: 76px; padding: 8px; border-radius: 16px; } }
 @media (max-width: 360px) { .world-header .instalar-app > button { padding: .55rem .65rem; gap: .3rem; font-size: .7rem; } .world-language { padding-inline: .35rem; } .world-language select { font-size: .75rem; padding-inline: .1rem; max-width: 5.5rem; } }
+
+/* Compact footer and notification control, while keeping 44px touch targets. */
+.privacy-links.world-footer { max-width: 62.5rem; padding: .6rem .9rem; gap: .8rem; border-radius: 16px; align-items: center; }
+.world-footer-heading { padding: 0; gap: .5rem; }
+.world-footer-heading strong { font-size: .8rem; }
+.world-footer-heading div > span { display: none; }
+.world-small-symbol { width: 28px; height: 28px; border-radius: 9px; }
+.world-small-symbol svg { width: 18px; height: 18px; }
+.world-footer nav { flex: 1; max-width: none; gap: .15rem; }
+.world-footer nav button { padding: .4rem .6rem; font-size: .72rem; }
+.conduct-guide { max-width: 62.5rem; padding: .1rem .9rem; border-radius: 14px; margin-block: .5rem; font-size: .78rem; }
+.app footer { margin-top: 1.5rem; padding: 1rem 0; }
+.app .avisos-sociales { margin: .8rem 0 1.3rem; padding: 0; border: 0; background: transparent; }
+.app .avisos-sociales > .notice-toggle { display: inline-flex; align-items: center; justify-content: center; gap: .45rem; min-height: 44px; margin: 0; padding: .4rem .75rem; border: 1px solid #e1d4ec; border-radius: 999px; background: #fffc; color: #68497c; font-size: .75rem; font-weight: 600; box-shadow: 0 2px 8px #50306504; }
+.notice-toggle > svg { width: 17px; height: 17px; }
+.notice-count { min-width: 1.25rem; height: 1.25rem; padding: 0 .2rem; box-sizing: border-box; display: inline-grid; place-items: center; border-radius: 7px; background: #eee5f7; color: #6a4783; font-size: .65rem; }
+.notice-chevron { line-height: 1; font-size: 1rem; }
+.app .avisos-sociales > .notice-toggle[aria-expanded=true] { border-color: #b99bd1; background: #f0e7f9; }
+.app .avisos-sociales > .notice-toggle:hover { background: #f3ebfa; }
+.app .app-nav.nav-gallery .nav-tile--admin .nav-tile-art { flex-basis: 42px; width: 42px; }
+.app .avisos-sociales > .comunidad-tarjeta { margin-top: .7rem; border: 1px solid #e0d2ec; border-radius: 16px; padding: 1rem; }
+.notice-limit { font-size: .75rem; color: #786383; }
+@media (max-width:600px) { .privacy-links.world-footer { gap: .4rem; align-items: flex-start; } .world-footer nav { width: 100%; } .world-footer nav button { padding: .3rem .45rem; font-size: .72rem; } }

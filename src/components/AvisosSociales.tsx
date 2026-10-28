@@ -68,8 +68,8 @@ export default function AvisosSociales({ onVerComunidad }: { onVerComunidad: () 
     } catch { setMensajePush(t("No se pudo desactivar el dispositivo. Intentá nuevamente.")) } finally { setConfigurandoPush(false) }
   }
   return <section className="comunidad avisos-sociales" aria-label={t("Avisos de cuentas seguidas")}>
-    <button type="button" aria-expanded={abierto} onClick={() => setAbierto(v => !v)}>{t("🔔 Avisos (")}{avisos.filter(a => !a.leida).length}{t("sin leer entre los últimos 20)")}</button>
-    {abierto && <div className="comunidad-tarjeta"><p>{t("Publicaciones de las cuentas que seguís. Los avisos se actualizan cada 30 segundos.")}</p>
+    <button className="notice-toggle" type="button" aria-expanded={abierto} aria-controls="social-notices-panel" aria-label={t('Avisos sin leer: {total} (últimos 20)',{total:avisos.filter(a=>!a.leida).length})} onClick={() => setAbierto(v => !v)}><svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/></svg><span>{t('Avisos')}</span><span className="notice-count">{avisos.filter(a=>!a.leida).length}</span><span className="notice-chevron" aria-hidden="true">⌄</span></button>
+    {abierto && <div id="social-notices-panel" className="comunidad-tarjeta"><p>{t("Publicaciones de las cuentas que seguís. Los avisos se actualizan cada 30 segundos.")}</p><p className="notice-limit">{t('Se muestran los últimos 20 avisos.')}</p>
       {avisos.length === 0 && <p>{t("No tenés avisos para mostrar.")}</p>}
       {avisos.map(a => <p key={a.id}><button type="button" onClick={() => void leer(a.id)}>{a.leida ? 'Visto' : 'Nuevo'}{t("· Una cuenta que seguís publicó ·")}{' '}{new Date(a.creado_en).toLocaleString(language)}</button></p>)}
       <button type="button" disabled={configurandoPush} onClick={() => void activarPush()}>{t("Activar push en este dispositivo")}</button>

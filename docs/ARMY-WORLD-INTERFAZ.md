@@ -29,3 +29,25 @@ aceptar/rechazar y persistencia de preferencias después de recargar.
 Cambio exclusivamente local/GitHub; no se desplegó a Netlify ni Supabase. El nuevo
 nombre en textos de las funciones de prueba llegará al servidor cuando se haga
 un despliegue autorizado posterior. No cambia los permisos ni activa pagos.
+
+## Administración y controles compactos
+
+El pie pasa a una fila en escritorio, con enlaces y botones de 44 px de área
+interactiva; se reduce el espacio visual del manual. Avisos muestra campana,
+etiqueta y contador separados. El límite de 20 se explica dentro del panel y en
+su nombre accesible, en lugar de alargar el botón cerrado.
+
+Administración se organiza en cuatro pestañas: revisión previa, reportes,
+solicitudes y pagos de prueba. Incluyen semántica ARIA, navegación con flechas,
+Home/End, formularios agrupados, estados vacíos y carga visible. Los componentes
+permanecen montados para conservar filtros y entradas al cambiar de sección.
+Los registros externos se abren por separado y el retorno de Mercado Pago sigue
+seleccionando la sección de pruebas. Se conservan permisos, confirmación de
+solicitudes y motivo obligatorio de moderación. No se ejecutan mutaciones al
+cambiar de pestaña.
+
+Validación de esta etapa: 71 pruebas de lógica/SQL, 26 E2E, lint y build correctos.
+Las nuevas pruebas cubren teclado, ancho 320 px, contador de Avisos, pie compacto,
+moderación con motivo, cancelación de solicitudes y acceso restringido al checkout.
+Se revisaron capturas con contenido ficticio en escritorio y móvil. No se modificó
+ninguna base ni se desplegó el sitio.
